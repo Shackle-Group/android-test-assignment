@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.ui.theme
+package com.adrianczuczka.ui.theme
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

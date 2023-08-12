@@ -1,30 +1,53 @@
 package com.adrianczuczka.search
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.adrianczuczka.search.content.SearchParamsGrid
+import com.adrianczuczka.ui.theme.ShackleHotelBuddyTheme
 
 @Composable
-fun SearchScreen() {
-    Column {
-        LazyColumn {
-            item {
-                Text(text = stringResource(id = R.string.search_screen_title_text))
-            }
-            item {
-                Row {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_event_upcoming),
-                        contentDescription = null
-                    )
-                    Text(text = stringResource(id = R.string.search_screen_check_in_date_text))
-                }
-            }
+fun SearchScreen(
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .paint(
+                painter = painterResource(id = R.drawable.background),
+                contentScale = ContentScale.FillWidth
+            )
+    ) {
+        SearchParamsGrid(
+            adultCount = 0,
+            onAdultCountChange = {},
+            childrenCount = 0,
+            onChildrenCountChange = {}
+        )
+        Button(
+            onClick = {
+                // TODO: Implement search
+            },
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 40.dp)
+                .fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = ShackleHotelBuddyTheme.colors.teal)
+        ) {
+            Text(
+                text = stringResource(id = R.string.search_screen_search_button_text),
+                modifier = Modifier.padding(vertical = 16.dp, horizontal = 32.dp),
+                fontSize = 18.sp
+            )
         }
     }
 }
