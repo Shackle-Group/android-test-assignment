@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_screen_title_text">Select guests, date and time</string>
+    <string name="search_screen_check_in_date_text">Check-in date</string>
+</resources>
