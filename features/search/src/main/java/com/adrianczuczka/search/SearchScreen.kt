@@ -14,11 +14,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.adrianczuczka.search.content.SearchParamsGrid
+import com.adrianczuczka.search.viewmodel.SearchViewModel
 import com.adrianczuczka.ui.theme.ShackleHotelBuddyTheme
 
 @Composable
 fun SearchScreen(
+    viewModel: SearchViewModel = hiltViewModel(),
 ) {
     Column(
         modifier = Modifier
