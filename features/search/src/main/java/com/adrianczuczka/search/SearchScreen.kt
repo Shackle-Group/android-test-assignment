@@ -7,6 +7,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
@@ -23,6 +24,7 @@ import com.adrianczuczka.ui.theme.ShackleHotelBuddyTheme
 fun SearchScreen(
     viewModel: SearchViewModel = hiltViewModel(),
 ) {
+    val state = viewModel.state.collectAsState().value
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -32,10 +34,18 @@ fun SearchScreen(
             )
     ) {
         SearchParamsGrid(
-            adultCount = 0,
-            onAdultCountChange = {},
-            childrenCount = 0,
-            onChildrenCountChange = {}
+            adultCount = state.adultCount,
+            onAdultCountChanged = { viewModel.onAdultCountChanged(it) },
+            childrenCount = state.childrenCount,
+            onChildrenCountChanged = { viewModel.onChildrenCountChanged(it) },
+            datePickerState = state.datePickerState,
+            onDismissDatePicker = { viewModel.dismissDatePicker() },
+            onCheckInDateChanged = { viewModel.onCheckInDateChanged(it) },
+            onCheckOutDateChanged = { viewModel.onCheckOutDateChanged(it) },
+            onCheckInDateButtonClick = { viewModel.onCheckInButtonClick() },
+            onCheckOutDateButtonClick = { viewModel.onCheckOutButtonClick() },
+            selectedCheckInDate = state.checkInDate,
+            selectedCheckOutDate = state.checkOutDate
         )
         Button(
             onClick = {

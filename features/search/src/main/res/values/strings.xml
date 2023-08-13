@@ -3,9 +3,11 @@
     <string name="search_screen_title_text">Select guests, date and time</string>
     <string name="search_screen_check_in_date_text">Check-in date</string>
     <string name="search_screen_search_button_text">Search</string>
-    <string name="search_screen_date_label">DD / MM / YYYY</string>
+    <string name="search_screen_default_date_label">DD / MM / YYYY</string>
+    <string name="search_screen_date_label">%1$s / %2$s / %3$s</string>
     <string name="search_screen_check_out_date_text">Check-out date</string>
     <string name="search_screen_amount_text_field_label">Enter amount</string>
     <string name="search_screen_adults_text">Adults</string>
     <string name="search_screen_children_text">Children</string>
+    <string name="search_screen_date_picker_confirm_button_text">Confirm</string>
 </resources>

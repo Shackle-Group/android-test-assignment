@@ -12,14 +12,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.adrianczuczka.search.R
+import com.adrianczuczka.search.state.SearchState
 import com.adrianczuczka.ui.theme.ShackleHotelBuddyTheme
+import java.util.Date
 
 @Composable
 fun ColumnScope.SearchParamsGrid(
     adultCount: Int,
-    onAdultCountChange: (count: Int) -> Unit,
+    onAdultCountChanged: (count: Int) -> Unit,
     childrenCount: Int,
-    onChildrenCountChange: (count: Int) -> Unit,
+    onChildrenCountChanged: (count: Int) -> Unit,
+    datePickerState: SearchState.DatePickerState?,
+    onDismissDatePicker: () -> Unit,
+    onCheckInDateChanged: (dateMillis: Long) -> Unit,
+    onCheckOutDateChanged: (dateMillis: Long) -> Unit,
+    onCheckInDateButtonClick: () -> Unit,
+    onCheckOutDateButtonClick: () -> Unit,
+    selectedCheckInDate: Date?,
+    selectedCheckOutDate: Date?,
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.Center,
@@ -35,25 +45,37 @@ fun ColumnScope.SearchParamsGrid(
             )
         }
         item {
-            CheckInDateRow()
+            CheckInDateRow(
+                showDatePicker = datePickerState == SearchState.DatePickerState.CHECK_IN,
+                onDateChanged = onCheckInDateChanged,
+                onDismiss = onDismissDatePicker,
+                onDateButtonClick = onCheckInDateButtonClick,
+                selectedDate = selectedCheckInDate
+            )
         }
         item {
             Divider()
         }
         item {
-            CheckOutDateRow()
+            CheckOutDateRow(
+                showDatePicker = datePickerState == SearchState.DatePickerState.CHECK_OUT,
+                onDateChanged = onCheckOutDateChanged,
+                onDismiss = onDismissDatePicker,
+                onDateButtonClick = onCheckOutDateButtonClick,
+                selectedDate = selectedCheckOutDate
+            )
         }
         item {
             Divider()
         }
         item {
-            AdultsCountRow(adultCount = adultCount, onCountChange = onAdultCountChange)
+            AdultsCountRow(adultCount = adultCount, onCountChange = onAdultCountChanged)
         }
         item {
             Divider()
         }
         item {
-            ChildrenCountRow(childrenCount = childrenCount, onCountChange = onChildrenCountChange)
+            ChildrenCountRow(childrenCount = childrenCount, onCountChange = onChildrenCountChanged)
         }
     }
 }
