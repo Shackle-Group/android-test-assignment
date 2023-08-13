@@ -17,7 +17,6 @@ class SearchViewModel @Inject constructor() : ViewModel() {
 
     val state: StateFlow<SearchState> = _state.asStateFlow()
 
-
     fun onCheckInButtonClick() =
         _state.update { it.copy(datePickerState = SearchState.DatePickerState.CHECK_IN) }
 
@@ -43,4 +42,8 @@ class SearchViewModel @Inject constructor() : ViewModel() {
     fun onChildrenCountChanged(newCount: Int) = _state.update { it.copy(childrenCount = newCount) }
 
     fun dismissDatePicker() = _state.update { it.copy(datePickerState = null) }
+
+    fun searchProperties() {
+
+    }
 }

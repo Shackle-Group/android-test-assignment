@@ -1,0 +1,3 @@
+package com.adrianczuczka.properties.datasource
+
+interface PropertiesLocalDataSource

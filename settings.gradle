@@ -16,3 +16,6 @@ rootProject.name = "ShackleHotelBuddy"
 include ':app'
 include ':features:search'
 include ':common:ui'
+include ':data:properties'
+include ':domain:properties'
+include ':features:properties'
