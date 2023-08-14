@@ -11,6 +11,7 @@ import androidx.paging.map
 import com.adrianczuczka.domain.properties.GetPagingSourceUseCase
 import com.adrianczuczka.features.properties.model.PropertyListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
@@ -19,16 +20,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PropertiesViewModel @Inject constructor(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
     savedStateHandle: SavedStateHandle,
     getPagingSourceUseCase: GetPagingSourceUseCase,
 ) : ViewModel() {
 
-    private val checkInDateMillis: Long = checkNotNull(savedStateHandle["checkInDate"])
-    private val checkOutDateMillis: Long = checkNotNull(savedStateHandle["checkOutDate"])
-    private val adultsCount: Int = checkNotNull(savedStateHandle["adultsCount"])
-    private val childrenCount: Int = checkNotNull(savedStateHandle["childrenCount"])
+    private val checkInDateMillis: Long by lazy { checkNotNull(savedStateHandle["checkInDate"]) }
+    private val checkOutDateMillis: Long by lazy { checkNotNull(savedStateHandle["checkOutDate"]) }
+    private val adultsCount: Int by lazy { checkNotNull(savedStateHandle["adultsCount"]) }
+    private val childrenCount: Int by lazy { checkNotNull(savedStateHandle["childrenCount"]) }
 
-    val properties: Flow<PagingData<PropertyListItem>> =
+    val properties: Flow<PagingData<PropertyListItem>> by lazy {
         Pager(
             config = PagingConfig(pageSize = 20),
             pagingSourceFactory = {
@@ -54,5 +56,6 @@ class PropertiesViewModel @Inject constructor(
                     )
                 }
             }
-            .flowOn(Dispatchers.IO)
+            .flowOn(dispatcher)
+    }
 }

@@ -127,8 +127,8 @@ fun SearchScreen(
             onClick = {
                 if (state.checkInDate != null && state.checkOutDate != null) {
                     viewModel.storeSearch(
-                        state.checkInDate,
-                        state.checkOutDate,
+                        state.checkInDate.time,
+                        state.checkOutDate.time,
                         state.adultCount,
                         state.childrenCount
                     )

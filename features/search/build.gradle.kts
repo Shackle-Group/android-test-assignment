@@ -68,6 +68,13 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.46.1")
     kapt("com.google.dagger:hilt-compiler:2.46.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+
+    // Test
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
+    testImplementation("com.google.truth:truth:1.1.4")
+    testImplementation("org.mockito:mockito-inline:3.12.4")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
 
 kapt {

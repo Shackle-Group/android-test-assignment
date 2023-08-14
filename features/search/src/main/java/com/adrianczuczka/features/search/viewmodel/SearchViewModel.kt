@@ -5,8 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.adrianczuczka.data.properties.RecentSearchesRepository
 import com.adrianczuczka.data.properties.search.model.DbSearchInfo
 import com.adrianczuczka.domain.properties.DbDateInfoMapper
+import com.adrianczuczka.features.search.formatter.CurrentTimeFormatter
 import com.adrianczuczka.features.search.state.SearchState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -18,8 +20,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val searchesRepository: RecentSearchesRepository,
     private val dbDateInfoMapper: DbDateInfoMapper,
+    private val currentTimeFormatter: CurrentTimeFormatter,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<SearchState> = MutableStateFlow(SearchState())
@@ -53,26 +57,26 @@ class SearchViewModel @Inject constructor(
     fun dismissDatePicker() = _state.update { it.copy(datePickerState = null) }
 
     fun loadRecentSearches() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             val recentSearches = searchesRepository.getRecentSearches()
             _state.update { it.copy(mostRecentSearches = recentSearches) }
         }
     }
 
     fun storeSearch(
-        checkInDate: Date,
-        checkOutDate: Date,
+        checkInDateMillis: Long,
+        checkOutDateMillis: Long,
         adultCount: Int,
         childrenCount: Int,
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             searchesRepository.storeSearch(
                 DbSearchInfo(
-                    checkInDate = dbDateInfoMapper(checkInDate.time),
-                    checkOutDate = dbDateInfoMapper(checkOutDate.time),
+                    checkInDate = dbDateInfoMapper(checkInDateMillis),
+                    checkOutDate = dbDateInfoMapper(checkOutDateMillis),
                     adultCount = adultCount,
                     childrenCount = childrenCount,
-                    timestamp = Date().time
+                    timestamp = currentTimeFormatter()
                 )
             )
         }

@@ -78,6 +78,13 @@ dependencies {
     // UI
     implementation("androidx.compose.material:material:1.5.0")
     implementation("com.github.skydoves:landscapist-glide:2.2.5")
+
+    // Test
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
+    testImplementation("com.google.truth:truth:1.1.4")
+    testImplementation("org.mockito:mockito-inline:3.12.4")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+
 }
 
 kapt {

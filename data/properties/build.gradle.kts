@@ -61,6 +61,12 @@ implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
     kapt("androidx.room:room-compiler:2.5.2")
     testImplementation("androidx.room:room-testing:2.5.2")
     implementation("androidx.room:room-paging:2.5.2")
+
+    // Test
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.0.0")
+    testImplementation("com.google.truth:truth:1.1.4")
+    testImplementation("org.mockito:mockito-inline:3.12.4")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 }
 
 kapt {
