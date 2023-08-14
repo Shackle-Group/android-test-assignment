@@ -28,7 +28,7 @@ internal object PropertiesModule {
         clientBuilder.addInterceptor { chain ->
             val request: Request = chain.request()
             val headers = request
-                .headers
+                .headers()
                 .newBuilder()
                 .add(API_HEADER_KEY, API_HEADER_VALUE)
                 .add(HOST_HEADER_KEY, HOST_HEADER_VALUE)
