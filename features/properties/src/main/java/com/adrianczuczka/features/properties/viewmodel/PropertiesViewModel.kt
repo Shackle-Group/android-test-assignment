@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PropertiesViewModel @Inject constructor(
-    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
+    dispatcher: CoroutineDispatcher = Dispatchers.IO,
     savedStateHandle: SavedStateHandle,
     getPagingSourceUseCase: GetPagingSourceUseCase,
 ) : ViewModel() {
