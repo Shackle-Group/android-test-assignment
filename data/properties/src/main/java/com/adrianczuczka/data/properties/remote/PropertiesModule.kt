@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,7 +17,7 @@ internal object PropertiesModule {
     @Provides
     fun providePropertiesService(client: OkHttpClient): PropertiesService =
         Retrofit.Builder()
-            .baseUrl("https://rapidapi.com/apidojo/api/hotels4/")
+            .baseUrl("https://hotels4.p.rapidapi.com")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
@@ -28,13 +29,18 @@ internal object PropertiesModule {
         clientBuilder.addInterceptor { chain ->
             val request: Request = chain.request()
             val headers = request
-                .headers()
+                .headers
                 .newBuilder()
                 .add(API_HEADER_KEY, API_HEADER_VALUE)
+                .add(HOST_HEADER_KEY, HOST_HEADER_VALUE)
+                .add("content-type", "application/json")
                 .build()
             val newRequest = request.newBuilder().headers(headers).build()
             chain.proceed(newRequest)
         }
+        val loggingInterceptor = HttpLoggingInterceptor()
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        clientBuilder.addInterceptor(loggingInterceptor)
         return clientBuilder.build()
     }
 
@@ -44,5 +50,8 @@ internal object PropertiesModule {
      *  This should not be saved within the code. It should be saved locally within a file such as
      *  local.properties. It is only added here to make testing this app easier
      */
-    private const val API_HEADER_VALUE = "cc72f136a8msh018f48d73a78137p175bf4jsn7a5565edbf53"
+    private const val API_HEADER_VALUE = "ecd51782c5msh6d33a0e41999c36p1aaadbjsn89d210a1a738"
+
+    private const val HOST_HEADER_KEY = "X-RapidAPI-Host"
+    private const val HOST_HEADER_VALUE = "hotels4.p.rapidapi.com"
 }

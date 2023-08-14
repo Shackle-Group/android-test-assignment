@@ -53,7 +53,7 @@ fun SearchScreen(
         Button(
             onClick = {
                 if (state.checkInDate != null && state.checkOutDate != null) {
-                    navController.navigate("list/${state.checkInDate.time}/${state.checkInDate.time}/${state.adultCount}/${state.childrenCount}")
+                    navController.navigate("list/${state.checkInDate.time}/${state.checkOutDate.time}/${state.adultCount}/${state.childrenCount}")
                 }
             },
             modifier = Modifier

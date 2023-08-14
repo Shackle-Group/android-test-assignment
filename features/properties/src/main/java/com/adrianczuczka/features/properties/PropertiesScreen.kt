@@ -16,7 +16,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemKey
 import com.adrianczuczka.features.properties.viewmodel.PropertiesViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -25,7 +24,6 @@ fun PropertiesScreen(
     viewModel: PropertiesViewModel = hiltViewModel(),
 ) {
     val properties = viewModel.properties.collectAsLazyPagingItems()
-
     Box {
         if (properties.loadState.refresh is LoadState.Error) {
             Text(
@@ -53,7 +51,6 @@ fun PropertiesScreen(
                 ) {
                     items(
                         count = properties.itemCount,
-                        key = properties.itemKey { property -> property.id }
                     ) { index ->
                         val property = properties[index]
                         if (property != null) {

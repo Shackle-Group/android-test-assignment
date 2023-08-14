@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class GetPagingSourceUseCase @Inject constructor(
     private val repository: PropertiesRepository,
-    private val dbSearchInfoMapper: DbSearchInfoMapper,
+    private val apiSearchInfoMapper: ApiSearchInfoMapper,
 ) {
 
     operator fun invoke(
@@ -14,7 +14,7 @@ class GetPagingSourceUseCase @Inject constructor(
         adultsCount: Int,
         childrenCount: Int,
     ) = repository.getPropertiesPagingSource(
-        dbSearchInfoMapper(
+        apiSearchInfoMapper(
             checkInDateMillis,
             checkOutDateMillis,
             adultsCount,
