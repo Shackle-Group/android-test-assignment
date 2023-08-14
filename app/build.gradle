@@ -68,6 +68,7 @@ dependencies {
     // Modules
     implementation project(":features:search")
     implementation project(":common:ui")
+    implementation project(":features:properties")
 
     // DI
     implementation "com.google.dagger:hilt-android:2.46.1"

@@ -1,10 +1,12 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.adrianczuczka.properties"
+    namespace = "com.adrianczuczka.domain.properties"
     compileSdk = 33
 
     defaultConfig {
@@ -41,4 +43,21 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Modules
+    implementation(project(":data:properties"))
+
+    // DI
+    implementation("com.google.dagger:hilt-android:2.46.1")
+    kapt("com.google.dagger:hilt-compiler:2.46.1")
+
+    // Pagination
+    implementation("androidx.paging:paging-runtime-ktx:3.2.0")
+    testImplementation("androidx.paging:paging-common-ktx:3.2.0")
+    implementation("androidx.paging:paging-compose:3.2.0")
+    implementation("androidx.paging:paging-testing:3.2.0")
+}
+
+kapt {
+    correctErrorTypes = true
 }

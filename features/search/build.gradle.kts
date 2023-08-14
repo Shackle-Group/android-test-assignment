@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.adrianczuczka.search"
+    namespace = "com.adrianczuczka.features.search"
     compileSdk = 34
 
     defaultConfig {

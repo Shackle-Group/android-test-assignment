@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.adrianczuczka.ui"
+    namespace = "com.adrianczuczka.common.ui"
     compileSdk = 34
 
     defaultConfig {

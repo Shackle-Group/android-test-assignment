@@ -12,7 +12,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            com.adrianczuczka.ui.theme.ShackleHotelBuddyTheme {
+            com.adrianczuczka.common.ui.theme.ShackleHotelBuddyTheme {
                 val navController = rememberNavController()
                 AppNavGraph(
                     navController = navController,

@@ -6,7 +6,8 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.adrianczuczka.search.SearchScreen
+import com.adrianczuczka.features.properties.PropertiesScreen
+import com.adrianczuczka.features.search.SearchScreen
 
 @Composable
 fun AppNavGraph(
@@ -18,7 +19,9 @@ fun AppNavGraph(
     ) {
 
         composable("search") {
-            SearchScreen()
+            SearchScreen(
+                navController = navController
+            )
         }
 
         composable(
@@ -29,13 +32,8 @@ fun AppNavGraph(
                 navArgument("adultsCount") { type = NavType.IntType },
                 navArgument("childrenCount") { type = NavType.IntType }
             )
-        ) { backStackEntry ->
-            val checkInDate = backStackEntry.arguments?.getLong("checkInDate")
-            val checkOutDate = backStackEntry.arguments?.getLong("checkOutDate")
-            val adultsCount = backStackEntry.arguments?.getInt("adultsCount")
-            val childrenCount = backStackEntry.arguments?.getInt("childrenCount")
-
-            Profile(navController, userId, username, address)
+        ) {
+            PropertiesScreen()
         }
     }
 }

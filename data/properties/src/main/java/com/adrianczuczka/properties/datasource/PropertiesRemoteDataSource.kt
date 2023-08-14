@@ -1,3 +1,0 @@
-package com.adrianczuczka.properties.datasource
-
-interface PropertiesRemoteDataSource
