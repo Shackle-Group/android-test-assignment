@@ -15,7 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import java.util.Currency
 import javax.inject.Inject
 
 @HiltViewModel
@@ -48,13 +47,10 @@ class PropertiesViewModel @Inject constructor(
                     PropertyListItem(
                         id = apiProperty.id,
                         title = apiProperty.name,
-                        subtitle = "",
-                        dailyRate = PropertyListItem.DailyRate(
-                            rate = 0,
-                            currency = Currency.getInstance("USD")
-                        ),
-                        rating = 0.0,
-                        imageUrl = ""
+                        subtitle = apiProperty.neighborhood.name,
+                        dailyRate = apiProperty.price.lead.formatted,
+                        rating = apiProperty.reviews.score,
+                        imageUrl = apiProperty.propertyImage.image.url
                     )
                 }
             }

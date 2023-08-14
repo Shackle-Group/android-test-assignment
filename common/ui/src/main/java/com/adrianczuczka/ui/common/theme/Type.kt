@@ -15,6 +15,12 @@ data class CustomTypography constructor(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight(450),
     ),
+    val titleSmall: TextStyle = TextStyle(
+        fontSize = 20.sp,
+        lineHeight = 22.sp,
+        fontFamily = FontFamily.SansSerif,
+        fontWeight = FontWeight(450),
+    ),
     val bodyMedium: TextStyle = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.W400,

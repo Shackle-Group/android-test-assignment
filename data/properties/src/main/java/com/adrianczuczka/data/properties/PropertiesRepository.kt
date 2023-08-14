@@ -15,5 +15,4 @@ class PropertiesRepository @Inject constructor(
             service,
             searchInfo
         )
-
 }

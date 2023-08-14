@@ -33,7 +33,9 @@ fun AppNavGraph(
                 navArgument("childrenCount") { type = NavType.IntType }
             )
         ) {
-            PropertiesScreen()
+            PropertiesScreen(
+                navController = navController
+            )
         }
     }
 }

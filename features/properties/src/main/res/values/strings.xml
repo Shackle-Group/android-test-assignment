@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="properties_error_text">Error getting properties</string>
+    <string name="top_app_bar_title_text">Search results</string>
+    <string name="top_app_bar_navigation_icon_content_description">Back</string>
+    <string name="properties_row_nightly_rate_label">%1$s night</string>
 </resources>
