@@ -1,17 +1,17 @@
-package ke.newsarticles.core_utils.designs
+package com.example.shacklehotelbuddy.core_utils.designs
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 @SuppressLint("ConflictingOnColor")
-private val DarkColorPalette = darkColors(
+private val DarkColorPalette = darkColorScheme(
     primary = Color.White,
-    primaryVariant = Primary,
+    primaryContainer = Primary,
     secondary = Ascent,
     background = Color.Black,
     surface = Color.White,
@@ -19,9 +19,9 @@ private val DarkColorPalette = darkColors(
 )
 
 @SuppressLint("ConflictingOnColor")
-private val LightColorPalette = lightColors(
+private val LightColorPalette = lightColorScheme(
     primary = DarkPrimary,
-    primaryVariant = Color(0xFFedf6f9),
+    primaryContainer = Color(0xFFedf6f9),
     secondary = Ascent,
     background = Color.White,
     surface = Color.Black,
@@ -29,7 +29,7 @@ private val LightColorPalette = lightColors(
 )
 
 @Composable
-fun NewsArticlesTheme(
+fun ShackleHotelBuddyTheme(
     darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) {
@@ -39,6 +39,6 @@ fun NewsArticlesTheme(
     }
 
     MaterialTheme(
-        colors = colors, typography = Typography, shapes = Shapes, content = content
+        colorScheme = colors, typography = typography, shapes = Shapes, content = content
     )
 }

@@ -1,4 +1,4 @@
-package ke.newsarticles.core_utils.utils
+package com.example.shacklehotelbuddy.core_utils.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

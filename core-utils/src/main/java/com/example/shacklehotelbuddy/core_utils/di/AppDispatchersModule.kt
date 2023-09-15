@@ -1,12 +1,12 @@
-package ke.newsarticles.di
+package com.example.shacklehotelbuddy.core_utils.di
 
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ke.newsarticles.utils.AppDispatchers
-import ke.newsarticles.utils.AppDispatchersImpl
+import com.example.shacklehotelbuddy.core_utils.utils.AppDispatchers
+import com.example.shacklehotelbuddy.core_utils.utils.AppDispatchersImpl
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
