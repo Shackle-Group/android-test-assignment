@@ -1,15 +1,16 @@
-package ke.newsarticles.core_network.di
+package com.example.shacklehotelbuddy.core_network.di
 
 
+import com.example.shacklehotelbuddy.core_network.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ke.newsarticles.core_network.BuildConfig
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,6 +35,14 @@ object NetworkModule {
                 level = HttpLoggingInterceptor.Level.BODY
             })
         }
+        addInterceptor(
+            Interceptor { chain ->
+                val builder = chain.request().newBuilder()
+                builder.header("X-RapidAPI-Key", BuildConfig.X_RapidAPI_Key)
+                builder.header("X-RapidAPI-Host", BuildConfig.X_RapidAPI_Host)
+                return@Interceptor chain.proceed(builder.build())
+            }
+        )
     }.build()
 
     @OptIn(ExperimentalSerializationApi::class)

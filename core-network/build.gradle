@@ -1,21 +1,33 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
 }
 
 android {
     namespace 'com.example.shacklehotelbuddy.core_network'
-    compileSdk 33
+    compileSdk Configs.compileSdk
 
     defaultConfig {
-        minSdk 24
+        minSdk Configs.minSdk
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://hotels4.p.rapidapi.com/\""
+            buildConfigField "String", "X_RapidAPI_Key", "\"2518f8a379msh2160e8091ec5674p1f73e4jsn5f0e4052e5f1\""
+            buildConfigField "String", "X_RapidAPI_Host", "\"hotels4.p.rapidapi.com\""
+        }
         release {
+            buildConfigField "String", "BASE_URL", "\"https://hotels4.p.rapidapi.com/\""
+            buildConfigField "String", "X_RapidAPI_Key", "\"2518f8a379msh2160e8091ec5674p1f73e4jsn5f0e4052e5f1\""
+            buildConfigField "String", "X_RapidAPI_Host", "\"hotels4.p.rapidapi.com\""
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -31,10 +43,17 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation(Dependencies.ktxCore)
+    implementation(Dependencies.appCombat)
+
+    //retrofit
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.loggingInterceptor)
+    implementation(Dependencies.retrofitCoroutineAdapter)
+    implementation(Dependencies.kotlinSerializationJson)
+    implementation(Dependencies.retrofitKotlinSerialization)
+
+    //hilt
+    implementation(Dependencies.hilt)
+    kapt(Dependencies.hiltCompiler)
 }

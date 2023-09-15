@@ -9,17 +9,17 @@ object Versions {
 object Dependencies {
     // core
     const val ktxCore = "androidx.core:core-ktx:1.10.1"
-    const val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:1.8.0"
+    const val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:1.7.20"
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
     const val appCombat = "androidx.appcompat:appcompat:1.5.0"
-    const val material = "androidx.compose.material3:material3"
 
     // compose
     const val activityCompose = "androidx.activity:activity-compose:1.7.2"
     const val composeBom= "androidx.compose:compose-bom:2022.10.00"
     const val composeUi = "androidx.compose.ui:ui"
+    const val composeGraphics = "androidx.compose.ui:ui-graphics"
     const val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview"
-    const val composeMaterial = "androidx.compose.material:material"
+    const val composeMaterial = "androidx.compose.material3:material3"
     const val composeTooling = "androidx.compose.ui:ui-tooling"
     const val composeUiTest = "androidx.compose.ui:ui-test-manifest"
     const val composeNavigation = "androidx.navigation:navigation-compose"
@@ -62,4 +62,10 @@ object Dependencies {
     const val roomKRuntime = "androidx.room:room-ktx:${Versions.room}"
     const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
     const val roomPaging = "androidx.room:room-paging:${Versions.room}"
+
+    //test
+    const val androidxJunit = "junit:junit:4.13.2"
+    const val androidxJunitExt = "androidx.test.ext:junit:1.1.5"
+    const val expressoCore = "androidx.test.espresso:espresso-core:3.5.1"
+    const val composeUiTestJunit = "androidx.compose.ui:ui-test-junit4"
 }

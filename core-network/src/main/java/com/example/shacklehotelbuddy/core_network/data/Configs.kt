@@ -1,4 +1,4 @@
-package ke.newsarticles.core_network.data
+package com.example.shacklehotelbuddy.core_network.data
 
 sealed class ResponseState<T> {
     data class Success<T>(val data: T) : ResponseState<T>()
