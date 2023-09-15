@@ -1,0 +1,16 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "$rootDir/android-compose-module.gradle"
+
+android {
+    namespace 'com.example.shacklehotelbuddy.searchresults'
+}
+dependencies {
+    implementation project(':strings')
+    implementation project(':networking')
+    implementation project(':common')
+    implementation project(':theme')
+}

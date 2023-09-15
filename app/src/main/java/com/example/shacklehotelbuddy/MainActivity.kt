@@ -3,63 +3,81 @@ package com.example.shacklehotelbuddy
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.paint
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
+import androidx.core.os.BundleCompat
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.shacklehotelbuddy.common.SearchParams
+import com.example.shacklehotelbuddy.mainscreen.MainScreen
+import com.example.shacklehotelbuddy.searchresults.SEARCH_RESULT_PARAM_NAME
+import com.example.shacklehotelbuddy.searchresults.SearchResults
+import com.example.shacklehotelbuddy.theme.ShackleHotelBuddyTheme
+import com.squareup.moshi.FromJson
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.ToJson
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class MainActivity : ComponentActivity() {
+
+    private val adapter =
+        Moshi.Builder().add(LocalDateAdapter()).addLast(KotlinJsonAdapterFactory()).build()
+            .adapter(SearchParams::class.java)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ShackleHotelBuddyTheme {
-               MainScreen()
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = "main") {
+                    composable("main") {
+                        MainScreen(onSearchClicked = {
+                            navController.navigate(
+                                route = "searchResults/${adapter.toJson(it)}",
+                            )
+                        })
+                    }
+                    composable(
+                        route = "searchResults/{$SEARCH_RESULT_PARAM_NAME}",
+                        arguments = listOf(navArgument(name = SEARCH_RESULT_PARAM_NAME) {
+                            type = SearchParamsNavType(adapter)
+                        })
+                    ) {
+                        SearchResults()
+                    }
+                }
             }
         }
     }
 }
 
-@Composable
-fun MainScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .paint(
-                painterResource(id = R.drawable.background),
-                contentScale = ContentScale.FillWidth
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Box(
-            modifier = Modifier
-                .border(width = 2.dp, color = ShackleHotelBuddyTheme.colors.grayBorder)
-                .background(ShackleHotelBuddyTheme.colors.white)
-                .padding(16.dp)
-        ) {
-            Text(
-                text = "Hello!",
-                style = ShackleHotelBuddyTheme.typography.bodyMedium,
-                color = ShackleHotelBuddyTheme.colors.grayText
-            )
+class SearchParamsNavType(private val adapter: JsonAdapter<SearchParams>) :
+    NavType<SearchParams>(isNullableAllowed = false) {
+    override fun get(bundle: Bundle, key: String): SearchParams? =
+        BundleCompat.getParcelable(bundle, key, SearchParams::class.java)
+
+    override fun parseValue(value: String): SearchParams =
+        requireNotNull(adapter.fromJson(value)) {
+            "Error parsing SearchParam from $value"
         }
+
+    override fun put(bundle: Bundle, key: String, value: SearchParams) {
+        bundle.putParcelable(key, value)
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ShackleHotelBuddyTheme {
-        MainScreen()
+private class LocalDateAdapter {
+    @FromJson
+    fun fromJson(json: String): LocalDate? = LocalDate.from(FORMATTER.parse(json))
+
+    @ToJson
+    fun toJson(value: LocalDate?): String = FORMATTER.format(value)
+
+    companion object {
+        private val FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy")
     }
 }
