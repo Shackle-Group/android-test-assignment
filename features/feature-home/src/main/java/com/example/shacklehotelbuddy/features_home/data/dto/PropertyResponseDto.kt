@@ -1,9 +1,9 @@
 package com.example.shacklehotelbuddy.features_home.data.dto
 
 
+import androidx.annotation.Keep
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import android.support.annotation.Keep
 
 @Keep
 @Serializable
@@ -30,14 +30,10 @@ data class PropertyResponseDto(
                 val availability: Availability?,
                 @SerialName("id")
                 val id: String?,
-                @SerialName("legalDisclaimer")
-                val legalDisclaimer: Any?,
                 @SerialName("mapMarker")
                 val mapMarker: MapMarker?,
                 @SerialName("name")
                 val name: String?,
-                @SerialName("offerSummary")
-                val offerSummary: OfferSummary?,
                 @SerialName("price")
                 val price: Price?,
                 @SerialName("priceAfterLoyaltyPointsApplied")
@@ -50,10 +46,7 @@ data class PropertyResponseDto(
                 val regionId: String?,
                 @SerialName("reviews")
                 val reviews: Reviews?,
-                @SerialName("star")
-                val star: Any?,
-                @SerialName("supportingMessages")
-                val supportingMessages: Any?
+
             ) {
                 @Keep
                 @Serializable
@@ -90,17 +83,6 @@ data class PropertyResponseDto(
 
                 @Keep
                 @Serializable
-                data class OfferSummary(
-                    @SerialName("attributes")
-                    val attributes: List<Any?>?,
-                    @SerialName("messages")
-                    val messages: List<Any?>?,
-                    @SerialName("__typename")
-                    val typename: String?
-                )
-
-                @Keep
-                @Serializable
                 data class Price(
                     @SerialName("displayMessages")
                     val displayMessages: List<DisplayMessage?>?,
@@ -111,7 +93,7 @@ data class PropertyResponseDto(
                     @SerialName("priceMessages")
                     val priceMessages: List<PriceMessage?>?,
                     @SerialName("priceMessaging")
-                    val priceMessaging: Any?,
+                    val priceMessaging: String?,
                     @SerialName("strikeOut")
                     val strikeOut: StrikeOut?,
                     @SerialName("strikeOutType")
@@ -131,34 +113,17 @@ data class PropertyResponseDto(
                         @Serializable
                         data class LineItem(
                             @SerialName("accessibilityLabel")
-                            val accessibilityLabel: Any?,
-                            @SerialName("badge")
-                            val badge: Any?,
-                            @SerialName("disclaimer")
-                            val disclaimer: Disclaimer?,
-                            @SerialName("mark")
-                            val mark: Any?,
+                            val accessibilityLabel: String?,
                             @SerialName("price")
                             val price: Price?,
                             @SerialName("role")
                             val role: String?,
-                            @SerialName("state")
-                            val state: Any?,
+
                             @SerialName("__typename")
                             val typename: String?,
                             @SerialName("value")
                             val value: String?
                         ) {
-                            @Keep
-                            @Serializable
-                            data class Disclaimer(
-                                @SerialName("content")
-                                val content: List<String?>?,
-                                @SerialName("title")
-                                val title: Any?,
-                                @SerialName("__typename")
-                                val typename: String?
-                            )
 
                             @Keep
                             @Serializable
@@ -360,7 +325,7 @@ data class PropertyResponseDto(
                     @SerialName("alt")
                     val alt: String?,
                     @SerialName("fallbackImage")
-                    val fallbackImage: Any?,
+                    val fallbackImage: String?,
                     @SerialName("image")
                     val image: Image?,
                     @SerialName("subjectId")
