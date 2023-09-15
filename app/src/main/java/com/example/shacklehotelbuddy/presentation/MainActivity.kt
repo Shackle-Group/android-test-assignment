@@ -1,6 +1,7 @@
 package com.example.shacklehotelbuddy.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -23,13 +24,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.core_utils.designs.ShackleHotelBuddyTheme
 import com.example.shacklehotelbuddy.core_utils.navigation.Routes
 import com.example.shacklehotelbuddy.core_utils.navigation.UiEvent
+import com.example.shacklehotelbuddy.features_home.presentation.PropertyVm
+import com.example.shacklehotelbuddy.features_home.presentation.SearchPage
+import com.example.shacklehotelbuddy.features_home.presentation.SearchResultPage
 import com.example.shacklehotelbuddy.features_splash.SplashPage
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,6 +43,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             ShackleHotelBuddyTheme {
                 val systemUiController = rememberSystemUiController()
@@ -54,6 +60,8 @@ class MainActivity : ComponentActivity() {
 
                 val navController = rememberNavController()
 
+                val propertyVm: PropertyVm = hiltViewModel()
+
                 Surface(color = MaterialTheme.colorScheme.background) {
                     NavHost(navController = navController, startDestination = Routes.splashPage) {
                         composable(Routes.splashPage) {
@@ -67,15 +75,25 @@ class MainActivity : ComponentActivity() {
                         }
 
                         composable(Routes.searchPage) {
-                            MainScreen()
+                            SearchPage(
+                                propertyVm = propertyVm,
+                                searchButtonClicked = {
+
+                                },
+                                onSearchQueryAction = {},
+                                onNavigate = { event ->
+                                    if (event is UiEvent.OnNavigate) {
+                                       navController.navigate(event.route)
+                                    }
+                                }
+                            )
                         }
 
                         composable(Routes.searchResultsPage) {
-                           /* NewsPage { event ->
-                                if (event is UiEvent.OnNavigate) {
-                                    navController.navigate(event.route)
-                                }
-                            }*/
+                            SearchResultPage(
+                                propertyVm = propertyVm,
+                                navController = navController
+                            )
                         }
 
 
@@ -92,7 +110,7 @@ fun MainScreen() {
         modifier = Modifier
             .fillMaxSize()
             .paint(
-                painterResource(id = R.drawable.background),
+                painterResource(id = com.example.shacklehotelbuddy.core_resources.R.drawable.background),
                 contentScale = ContentScale.FillWidth
             ),
         contentAlignment = Alignment.Center

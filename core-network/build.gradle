@@ -52,8 +52,14 @@ dependencies {
     implementation(Dependencies.retrofitCoroutineAdapter)
     implementation(Dependencies.kotlinSerializationJson)
     implementation(Dependencies.retrofitKotlinSerialization)
+    implementation(Dependencies.retrofitConverterGson)
 
     //hilt
     implementation(Dependencies.hilt)
     kapt(Dependencies.hiltCompiler)
+
+    //tests
+    testImplementation(Dependencies.androidxJunit)
+    androidTestImplementation(Dependencies.androidxJunitExt)
+    androidTestImplementation(Dependencies.expressoCore)
 }

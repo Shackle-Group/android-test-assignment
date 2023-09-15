@@ -6,4 +6,6 @@
     <string name="adults">Adults</string>
     <string name="children">Children</string>
     <string name="search_results">Search Results</string>
+    <string name="recent_searches">Recent searches</string>
+    <string name="search">Search</string>
 </resources>

@@ -13,8 +13,7 @@ interface PropertiesApi {
 
     @POST("properties/v2/list")
     suspend fun fetchProperties(
-        @Query("resultsStartingIndex") resultsStartingIndex: Int = 0,
-        @Body searchRequestDto: SearchRequestDto
-    ): Flow<PropertyResponseDto>
+        @Body searchRequestDto: SearchRequestDto?
+    ): PropertyResponseDto
 
 }

@@ -1,7 +1,7 @@
 object Versions {
     internal const val retrofit = "2.9.0"
     internal const val coroutines = "1.6.3"
-    internal const val RETROFIT_KOTLIN_SERIALIZATION = "0.8.0"
+    internal const val RETROFIT_KOTLIN_SERIALIZATION = "1.0.0"
     internal const val KOTLIN_SERIALIZATION_JSON = "1.3.2"
     internal const val room = "2.4.2"
 }
@@ -15,7 +15,7 @@ object Dependencies {
 
     // compose
     const val activityCompose = "androidx.activity:activity-compose:1.7.2"
-    const val composeBom= "androidx.compose:compose-bom:2022.10.00"
+    const val composeBom= "androidx.compose:compose-bom:2023.06.00"
     const val composeUi = "androidx.compose.ui:ui"
     const val composeGraphics = "androidx.compose.ui:ui-graphics"
     const val composeToolingPreview = "androidx.compose.ui:ui-tooling-preview"
@@ -29,11 +29,12 @@ object Dependencies {
     const val hilt = "com.google.dagger:hilt-android:2.45"
     const val hiltLifecycleViewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     const val hiltCompiler = "com.google.dagger:hilt-compiler:2.45"
-    const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.0.0"
+    const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:1.1.0-alpha01"
 
     // retrofit
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retrofitConverterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+    const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3"
     const val retrofitCoroutineAdapter =
         "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2"
@@ -45,6 +46,7 @@ object Dependencies {
 
     // ui
     const val accompanist = "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
+    const val coil = "io.coil-kt:coil-compose:2.4.0"
 
     // viewmodel
     const val composeViewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0"

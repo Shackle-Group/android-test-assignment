@@ -12,4 +12,8 @@ object TimeUtils {
             date
         }
     }
+
+    fun simpleFormat(date: Date): String{
+        return SimpleDateFormat("dd/MM/YYYY",Locale.getDefault()).format(date)
+    }
 }

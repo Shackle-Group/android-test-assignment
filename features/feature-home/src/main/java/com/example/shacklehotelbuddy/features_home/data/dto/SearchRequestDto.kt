@@ -2,55 +2,53 @@ package com.example.shacklehotelbuddy.features_home.data.dto
 
 
 import androidx.annotation.Keep
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Keep
 @Serializable
 data class SearchRequestDto(
-    @SerialName("checkInDate")
+    @SerializedName("checkInDate")
     val checkInDate: CheckInDate?,
-    @SerialName("checkOutDate")
+    @SerializedName("checkOutDate")
     val checkOutDate: CheckOutDate?,
-    @SerialName("currency")
+    @SerializedName("currency")
     val currency: String?,
-    @SerialName("destination")
+    @SerializedName("destination")
     val destination: Destination?,
-    @SerialName("eapid")
+    @SerializedName("eapid")
     val eapid: Int?,
-    @SerialName("filters")
-    val filters: Filters?,
-    @SerialName("locale")
+    @SerializedName("locale")
     val locale: String?,
-    @SerialName("resultsSize")
+    @SerializedName("resultsSize")
     val resultsSize: Int?,
-    @SerialName("resultsStartingIndex")
+    @SerializedName("resultsStartingIndex")
     val resultsStartingIndex: Int?,
-    @SerialName("rooms")
+    @SerializedName("rooms")
     val rooms: List<Room?>?,
-    @SerialName("siteId")
+    @SerializedName("siteId")
     val siteId: Int?,
-    @SerialName("sort")
+    @SerializedName("sort")
     val sort: String?
 )
 
 @Keep
 @Serializable
 data class Room(
-    @SerialName("adults")
+    @SerializedName("adults")
     val adults: Int?,
-    @SerialName("children")
+    @SerializedName("children")
     val children: List<Children?>?
 )
 
 @Keep
 @Serializable
 data class CheckInDate(
-    @SerialName("day")
+    @SerializedName("day")
     val day: Int?,
-    @SerialName("month")
+    @SerializedName("month")
     val month: Int?,
-    @SerialName("year")
+    @SerializedName("year")
     val year: Int?
 )
 
@@ -58,40 +56,31 @@ data class CheckInDate(
 @Keep
 @Serializable
 data class CheckOutDate(
-    @SerialName("day")
+    @SerializedName("day")
     val day: Int?,
-    @SerialName("month")
+    @SerializedName("month")
     val month: Int?,
-    @SerialName("year")
+    @SerializedName("year")
     val year: Int?
 )
 
 @Keep
 @Serializable
 data class Children(
-    @SerialName("age")
+    @SerializedName("age")
     val age: Int?
 )
 
 @Keep
 @Serializable
 data class Destination(
-    @SerialName("regionId")
+    @SerializedName("regionId")
     val regionId: String?
 )
 
 @Keep
 @Serializable
 data class Filters(
-    @SerialName("price")
+    @SerializedName("price")
     val price: Price?
-)
-
-@Keep
-@Serializable
-data class Price(
-    @SerialName("max")
-    val max: Int?,
-    @SerialName("min")
-    val min: Int?
 )

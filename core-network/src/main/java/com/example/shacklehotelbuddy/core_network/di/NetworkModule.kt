@@ -8,13 +8,15 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonConfiguration
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Converter
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -25,6 +27,13 @@ object NetworkModule {
     @Singleton
     fun provideKotlinJson() = Json {
         ignoreUnknownKeys = true
+        isLenient = true
+    }
+    @Provides
+    @Singleton
+    fun provideKotlinSerialization(json: Json): Converter.Factory {
+        val contentType = "application/json".toMediaType()
+        return json.asConverterFactory(contentType)
     }
 
     @Provides
@@ -45,12 +54,11 @@ object NetworkModule {
         )
     }.build()
 
-    @OptIn(ExperimentalSerializationApi::class)
     @Provides
     @Singleton
-    fun provideRetrofit(json: Json, okHttpClient: OkHttpClient) =
+    fun provideRetrofit(json: Json, okHttpClient: OkHttpClient, converter: Converter.Factory) =
         Retrofit.Builder().client(okHttpClient)
-            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory()).baseUrl(BuildConfig.BASE_URL)
             .build()
 

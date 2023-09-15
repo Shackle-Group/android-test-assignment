@@ -7,6 +7,7 @@ import com.example.shacklehotelbuddy.features_home.data.dto.Children
 import com.example.shacklehotelbuddy.features_home.data.dto.Destination
 import com.example.shacklehotelbuddy.features_home.data.dto.Room
 import com.example.shacklehotelbuddy.features_home.data.dto.SearchRequestDto
+import java.util.Calendar
 import java.util.Date
 
 
@@ -31,10 +32,22 @@ fun SearchQueryEntity.toSearchRequestDto(): SearchRequestDto = SearchRequestDto(
     checkOutDate = checkoutDate.toCheckOutDate(),
     rooms = arrayListOf(Room(adults = adultsCount, children = createChildren(childrenCount))),
     resultsStartingIndex = 0,
-    resultsSize = 100,
-    sort = "PRICE_LOW_TO_HIGH",
-    filters = null
+    resultsSize = 50,
+    sort = "PRICE_LOW_TO_HIGH"
+)
 
+fun defaultSearchRequestDto() = SearchRequestDto(
+    currency = "EUR",
+    eapid = 1,
+    locale = "en_US",
+    siteId = 300000001,
+    destination = Destination(regionId = "6054439"),
+    checkInDate = Date().toCheckInDate(),
+    checkOutDate = Date().toCheckOutDate(),
+    rooms = arrayListOf(Room(adults = 1, children = createChildren(1))),
+    resultsStartingIndex = 0,
+    resultsSize = 50,
+    sort = "PRICE_LOW_TO_HIGH"
 )
 
 fun createChildren(count: Int = 0): List<Children> {
@@ -45,15 +58,23 @@ fun createChildren(count: Int = 0): List<Children> {
     return children.toList()
 }
 
-fun Date.toCheckInDate(): CheckInDate = CheckInDate(
-    year = year,
-    month = month,
-    day = day
-)
+fun Date.toCheckInDate(): CheckInDate {
+    val calendar = Calendar.getInstance()
+    calendar.time = this
+    return CheckInDate(
+        year = calendar.get(Calendar.YEAR),
+        month = calendar.get(Calendar.MONTH) + 1,
+        day = calendar.get(Calendar.DAY_OF_MONTH)
+    )
+}
 
-fun Date.toCheckOutDate(): CheckOutDate = CheckOutDate(
-    year = year ?: 1972,
-    month = month,
-    day = day
-)
+fun Date.toCheckOutDate(): CheckOutDate {
+    val calendar = Calendar.getInstance()
+    calendar.time = this
+    return CheckOutDate(
+        year = calendar.get(Calendar.YEAR),
+        month = calendar.get(Calendar.MONTH) + 1,
+        day = calendar.get(Calendar.DAY_OF_MONTH)
+    )
+}
 
