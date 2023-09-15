@@ -72,6 +72,7 @@ dependencies {
     implementation(Dependencies.retrofitKotlinSerialization)
 
     implementation project(path: ":core-utils")
+    implementation project(path: ":core-network")
     implementation project(path: ":core-resources")
     implementation project(path: ":core-database")
 }

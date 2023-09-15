@@ -54,6 +54,7 @@ dependencies {
     implementation(Dependencies.composeMaterial)
     debugImplementation(Dependencies.composeTooling)
     debugImplementation(Dependencies.composeUiTest)
+    debugImplementation(Dependencies.accompanist)
 
     //Dagger - Hilt
     implementation Dependencies.hilt

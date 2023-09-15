@@ -9,7 +9,7 @@ object Versions {
 object Dependencies {
     // core
     const val ktxCore = "androidx.core:core-ktx:1.10.1"
-    const val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:1.7.20"
+    const val kotlinBom = "org.jetbrains.kotlin:kotlin-bom:1.8.0"
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
     const val appCombat = "androidx.appcompat:appcompat:1.5.0"
 

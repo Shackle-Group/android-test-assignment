@@ -63,11 +63,18 @@ dependencies {
     implementation(Dependencies.composeMaterial)
     debugImplementation(Dependencies.composeTooling)
     debugImplementation(Dependencies.composeUiTest)
+    debugImplementation(Dependencies.accompanist)
 
     //Dagger - Hilt
     implementation Dependencies.hilt
     kapt Dependencies.hiltCompiler
     implementation Dependencies.hiltNavigationCompose
+
+    implementation project(path: ":features:features_splash")
+    implementation project(path: ":features:feature-home")
+    implementation project(path: ":core-utils")
+    implementation project(path: ":core-resources")
+    implementation project(path: ":core-database")
 
     //tests
     testImplementation(Dependencies.androidxJunit)

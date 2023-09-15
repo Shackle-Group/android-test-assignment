@@ -27,7 +27,7 @@ fun SplashPage(
 
     LaunchedEffect(Unit){
         delay(1000)
-        onNavigate.invoke(UiEvent.OnNavigate(Routes.homePage))
+        //onNavigate.invoke(UiEvent.OnNavigate(Routes.searchPage))
     }
 
 
