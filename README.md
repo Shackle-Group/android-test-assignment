@@ -33,3 +33,7 @@ https://github.com/JobGetabu/compose-practise/raw/job/practice/screenshots/sh.mp
 - [Turbine](https://cashapp.github.io/turbine/) - Testing library for kotlinx.coroutines Flow.
 - [Mockk](https://mockk.io/) - Mocking library for Kotlin.
 - [Coil](https://coil-kt.github.io/coil/) - An image loading library for Android backed by Kotlin Coroutines.
+
+#### modularization 
+
+<p align="center"><img src="https://github.com/JobGetabu/TouristNewsCompose/blob/main/clean_arch.png" alt="Clean Architecture Diagram"></p>
