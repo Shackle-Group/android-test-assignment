@@ -11,7 +11,7 @@ Application connects to [Hotels](https://rapidapi.com/apidojo/api/hotels4) API t
 https://github.com/JobGetabu/compose-practise/raw/job/practice/screenshots/sh.mp4
 
 #### APK
-<a src="screenshots/app-debug.apk">Download 4 emulator</a> •
+<a href="screenshots/app-debug.apk">Download 4 emulator</a> •
 
 #### Built with 🛠
 
