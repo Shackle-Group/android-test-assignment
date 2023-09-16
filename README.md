@@ -2,11 +2,21 @@
 
 Application connects to [Hotels](https://rapidapi.com/apidojo/api/hotels4) API to get hotel data.
 
+#### Screens 📱
+
+<p align="center"> <img src="screenshots/1.png" width="250"/>  <img src="screenshots/2.png" width="250"/>  <img src="screenshots/3.png" width="250" /> <img src="screenshots/4.png" width="250" /></p>
+
+#### Demo 🎥
+
+https://github.com/JobGetabu/compose-practice/raw/job/practice/screenshots/sh.mp4
+
+#### APK
+<a src="screenshots/app-debug.apk">Download 4 emulator</a> •
 
 #### Built with 🛠
 
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
-- [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous and more..
+- [Coroutines](https://kotlinlang.org/reference/coroutines-overview.html) - For asynchronous and more..
 - [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) - A cold asynchronous data stream that               sequentially emits values and completes normally or with an exception.
 - [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) - Collection of libraries that help you design robust,           testable, and maintainable apps.
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.
