@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+}
+
+android {
+    namespace 'com.example.shacklehotelbuddy.features_home'
+    compileSdk Configs.compileSdk
+
+    defaultConfig {
+        minSdk Configs.minSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.3.2'
+    }
+}
+
+dependencies {
+
+    implementation(Dependencies.ktxCore)
+    implementation(Dependencies.lifecycleRuntime)
+    implementation(Dependencies.activityCompose)
+    implementation(Dependencies.kotlinSerializationJson)
+
+    //compose
+    implementation platform(Dependencies.composeBom)
+    implementation(Dependencies.composeUi)
+    implementation(Dependencies.composeGraphics)
+    implementation(Dependencies.composeTooling)
+    implementation(Dependencies.composeToolingPreview)
+    implementation(Dependencies.composeMaterial)
+    debugImplementation(Dependencies.composeTooling)
+    debugImplementation(Dependencies.composeUiTest)
+    debugImplementation(Dependencies.accompanist)
+
+    //Dagger - Hilt
+    implementation Dependencies.hilt
+    implementation Dependencies.hiltNavigationCompose
+    kapt Dependencies.hiltCompiler
+
+    implementation(Dependencies.composeViewModel)
+    implementation(Dependencies.coroutinesCore)
+    implementation(Dependencies.lifecycleRuntime)
+
+    implementation(Dependencies.coil)
+
+    //retrofit
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.loggingInterceptor)
+    implementation(Dependencies.retrofitCoroutineAdapter)
+    implementation(Dependencies.kotlinSerializationJson)
+    implementation(Dependencies.retrofitKotlinSerialization)
+    implementation(Dependencies.retrofitConverterGson)
+
+    implementation project(path: ":core-utils")
+    implementation project(path: ":core-network")
+    implementation project(path: ":core-resources")
+    implementation project(path: ":core-database")
+
+    //tests
+    testImplementation(Dependencies.androidxJunit)
+    androidTestImplementation(Dependencies.androidxJunitExt)
+    androidTestImplementation(Dependencies.expressoCore)
+}

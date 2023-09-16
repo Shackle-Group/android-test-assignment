@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shackle Hotel Buddy</string>
+    <string name="check_in_date">Check-in date</string>
+    <string name="check_out_date">Check-out date</string>
+    <string name="adults">Adults</string>
+    <string name="children">Children</string>
+    <string name="search_results">Search Results</string>
+    <string name="recent_searches">Recent searches</string>
+    <string name="search">Search</string>
+</resources>

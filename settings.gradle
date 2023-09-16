@@ -14,3 +14,9 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ShackleHotelBuddy"
 include ':app'
+include ':core-network'
+include ':core-database'
+include ':features:features_splash'
+include ':core-utils'
+include ':core-resources'
+include ':features:feature-home'

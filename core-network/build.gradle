@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
+    id 'org.jetbrains.kotlin.plugin.serialization'
+}
+
+android {
+    namespace 'com.example.shacklehotelbuddy.core_network'
+    compileSdk Configs.compileSdk
+
+    defaultConfig {
+        minSdk Configs.minSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField "String", "BASE_URL", "\"https://hotels4.p.rapidapi.com/\""
+            buildConfigField "String", "X_RapidAPI_Key", "\"2518f8a379msh2160e8091ec5674p1f73e4jsn5f0e4052e5f1\""
+            buildConfigField "String", "X_RapidAPI_Host", "\"hotels4.p.rapidapi.com\""
+        }
+        release {
+            buildConfigField "String", "BASE_URL", "\"https://hotels4.p.rapidapi.com/\""
+            buildConfigField "String", "X_RapidAPI_Key", "\"2518f8a379msh2160e8091ec5674p1f73e4jsn5f0e4052e5f1\""
+            buildConfigField "String", "X_RapidAPI_Host", "\"hotels4.p.rapidapi.com\""
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation(Dependencies.ktxCore)
+    implementation(Dependencies.appCombat)
+
+    //retrofit
+    implementation(Dependencies.retrofit)
+    implementation(Dependencies.loggingInterceptor)
+    implementation(Dependencies.retrofitCoroutineAdapter)
+    implementation(Dependencies.kotlinSerializationJson)
+    implementation(Dependencies.retrofitKotlinSerialization)
+    implementation(Dependencies.retrofitConverterGson)
+
+    //hilt
+    implementation(Dependencies.hilt)
+    kapt(Dependencies.hiltCompiler)
+
+    //tests
+    testImplementation(Dependencies.androidxJunit)
+    androidTestImplementation(Dependencies.androidxJunitExt)
+    androidTestImplementation(Dependencies.expressoCore)
+}
