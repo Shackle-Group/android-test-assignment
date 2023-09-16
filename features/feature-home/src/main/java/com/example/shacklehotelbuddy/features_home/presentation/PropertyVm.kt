@@ -55,13 +55,10 @@ class PropertyVm @Inject constructor(private val propertyRepository: PropertyRep
     }
 
     suspend fun fetchRecentSearch() {
-        _uiState.update { currentState ->
-            val queries = mutableListOf<SearchQueryEntity>()
-            propertyRepository.fetchRecentSearch().collectLatest { q ->
-                queries.addAll(q)
-            }
-
-            currentState.copy(searchQueries = queries)
+        val queries = mutableListOf<SearchQueryEntity>()
+        propertyRepository.fetchRecentSearch().collectLatest { q ->
+            queries.addAll(q)
+            _uiState.update { currentState -> currentState.copy(searchQueries = queries) }
         }
     }
 

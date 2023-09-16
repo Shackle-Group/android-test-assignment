@@ -74,8 +74,6 @@ import com.example.shacklehotelbuddy.features_home.data.mappers.toSearchRequestD
 @Composable
 fun SearchPage(
     propertyVm: PropertyVm = hiltViewModel(),
-    searchButtonClicked: () -> Unit,
-    onSearchQueryAction: (SearchQueryEntity) -> Unit,
     onNavigate: (UiEvent) -> Unit
 ) {
     val scope = rememberCoroutineScope()
@@ -88,21 +86,25 @@ fun SearchPage(
 
     val uiState by propertyVm.uiState.collectAsState()
 
-    SearchContent(uiState = uiState,
+    SearchContent(
+        uiState = uiState,
         onSearchButtonClicked = {
             propertyVm.addSearchQuery(propertyVm.getQuery())
-            searchButtonClicked()
             onNavigate.invoke(UiEvent.OnNavigate(Routes.searchResultsPage))
-
             Log.d("SearchPage", "propertyVm.searchQueryEntity  ${propertyVm.searchQueryEntity}")
-            Log.d("SearchPage", "propertyVm.toSearchRequestDto  ${propertyVm.searchQueryEntity?.toSearchRequestDto()}")
+            Log.d(
+                "SearchPage",
+                "propertyVm.toSearchRequestDto  ${propertyVm.searchQueryEntity?.toSearchRequestDto()}"
+            )
         },
         onCheckInDateUpdated = { date -> propertyVm.updateCheckInDate(date) },
         onCheckoutDateUpdated = { date -> propertyVm.updateCheckoutDate(date) },
         onAdultsCountUpdated = { adultsCount -> propertyVm.updateAdultsCount(adultsCount) },
-        onChildrenCountUpdated = { childrenCount -> propertyVm.updateChildrenCount(childrenCount) }) { query ->
-        onSearchQueryAction(query)
-    }
+        onChildrenCountUpdated = { childrenCount -> propertyVm.updateChildrenCount(childrenCount) },
+        onSearchQuerySelected = { query ->
+            propertyVm.searchQueryEntity = query
+            onNavigate.invoke(UiEvent.OnNavigate(Routes.searchResultsPage))
+        })
 }
 
 

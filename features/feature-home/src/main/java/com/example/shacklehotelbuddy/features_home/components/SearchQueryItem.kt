@@ -9,9 +9,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.shacklehotelbuddy.core_database.entities.SearchQueryEntity
 import com.example.shacklehotelbuddy.features_home.presentation.RecentSearchesList
 import com.example.shacklehotelbuddy.core_resources.R
@@ -42,12 +48,28 @@ fun RecentSearchQueryItem(
                     )
                 }", modifier = Modifier
                     .padding(start = 16.dp)
-                    .weight(1f)
+                    .weight(1f),
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    lineHeight = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.circularstd_medium)),
+                    fontWeight = FontWeight(450),
+                    color = Color(0xFF6D6D6D),
+                ),
+                maxLines = 1
             )
             Text(
                 text =
                 "${searchQuery.adultsCount} adult, ${searchQuery.childrenCount} children",
-                modifier = Modifier.padding(start = 16.dp)
+                modifier = Modifier.padding(start = 16.dp),
+                style = TextStyle(
+                    fontSize = 12.sp,
+                    lineHeight = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.circularstd_medium)),
+                    fontWeight = FontWeight(450),
+                    color = Color(0xFF6D6D6D),
+                ),
+                maxLines = 1
             )
         }
     }

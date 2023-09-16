@@ -77,10 +77,6 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.searchPage) {
                             SearchPage(
                                 propertyVm = propertyVm,
-                                searchButtonClicked = {
-
-                                },
-                                onSearchQueryAction = {},
                                 onNavigate = { event ->
                                     if (event is UiEvent.OnNavigate) {
                                        navController.navigate(event.route)
