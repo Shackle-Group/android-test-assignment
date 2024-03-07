@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ShackleHotelBuddy</string>
+    <string name="adults">Adults</string>
+    <string name="children">Children</string>
+    <string name="check_out_data">Check-out Data</string>
+    <string name="check_in_data">Check-in Data</string>
+    <string name="select_guests_date_and_time">Select guests, date and time</string>
+    <string name="search">Search</string>
+    <string name="search_results">Search Results</string>
+    <string name="region_id">6054439</string>
+    <string name="recent_searches">Recent searches</string>
+    <string name="adult_s">" adult(s)"</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
 </resources>
