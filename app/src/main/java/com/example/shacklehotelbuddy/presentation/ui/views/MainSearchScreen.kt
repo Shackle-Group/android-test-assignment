@@ -218,7 +218,7 @@ fun SearchHistoryItem(
                 .width(1.dp)
         )
         Text(
-            text = "${hotelSearch.checkInDate} to ${hotelSearch.checkOutDate} for ${hotelSearch.adults} ${
+            text = "${hotelSearch.checkInDate} - ${hotelSearch.checkOutDate} for ${hotelSearch.adults} ${
                 (if (hotelSearch.adults > 1) "adults" else "adult")
             } ${
                 if (hotelSearch.children == 1) "& ${hotelSearch.children} child"
