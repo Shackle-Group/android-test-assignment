@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">ShackleHotelBuddy</string>
+    <string name="children">Children</string>
+    <string name="adults">Adults</string>
+    <string name="recent_searches">Recent Searches</string>
+    <string name="search">Search</string>
+    <string name="select_guests_date_time">Select guests, date and time</string>
+    <string name="icon_recent_search">Recent Search</string>
+    <string name="check_in_date">Check-in date</string>
+    <string name="check_out_date">Check-out date</string>
+    <string name="icon_minus">Decrement</string>
+    <string name="icon_plus">Increment</string>
+    <string name="search_results">Search results</string>
+    <string name="icon_back">Back</string>
+    <string name="error_check_in">Invalid check in date</string>
+    <string name="error_check_out">Invalid check out date</string>
+    <string name="error_adults">Invalid number of adults</string>
+    <string name="error_children">Invalid number of children</string>
+    <string name="icon_image">Hotel Image</string>
+    <string name="not_available">Not available</string>
+    <string name="icon_rating">Rating icon</string>
+    <string name="network_error">Network error</string>
+    <string name="no_hotel_found">No hotel found for this search,\ntry again by changing filters on previous screen!</string>
+    <string name="error_endpoint">Failed to fetch hotels!</string>
 </resources>
