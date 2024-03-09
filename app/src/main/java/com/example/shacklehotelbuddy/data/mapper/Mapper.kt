@@ -1,6 +1,7 @@
 package com.example.shacklehotelbuddy.data.mapper
 
 import com.example.shacklehotelbuddy.data.local.model.HotelSearchEntity
+import com.example.shacklehotelbuddy.data.remote.model.BookingHotelSearchResponse
 import com.example.shacklehotelbuddy.data.remote.model.PropertySearch
 import com.example.shacklehotelbuddy.domain.model.Hotel
 import com.example.shacklehotelbuddy.domain.model.HotelSearch
@@ -44,7 +45,7 @@ fun PropertySearch.toHotelList(): List<Hotel> {
             id = it.id ?: "",
             name = it.name ?: "",
             imageUrl = it.propertyImage?.image?.url ?: "",
-            price = it.price?.lead?.formatted ?: "",//todo check what's missing,
+            price = it.price?.lead?.formatted ?: "",
             location = it.neighborhood?.name ?: "",
             star = it.star ?: ""
         )
@@ -53,4 +54,23 @@ fun PropertySearch.toHotelList(): List<Hotel> {
 
 fun parseSearchDate(day: Int, month: Int, year: Int): SearchDate {
     return SearchDate(day.toString(), month.toString(), year.toString())
+}
+
+fun BookingHotelSearchResponse.toHotelList(): List<Hotel> {
+    val list = mutableListOf<Hotel>()
+    result.map { hotel ->
+        hotel?.let {
+            list.add(
+                Hotel(
+                    id = it.id ?: "",
+                    name = it.hotelName ?: "",
+                    imageUrl = it.maxPhotoUrl ?: "",
+                    price = it.composite_price_breakdown?.all_inclusive_amount?.amount_rounded ?: "",
+                    location = it.city ?: "",
+                    star = it.reviewScore ?: ""
+                )
+            )
+        }
+    }
+    return list
 }
