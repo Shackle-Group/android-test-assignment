@@ -1,6 +1,6 @@
 package com.example.shacklehotelbuddy.domain.usecase
 
-import com.example.shacklehotelbuddy.data.repository.HotelRepository
+import com.example.shacklehotelbuddy.domain.repository.HotelRepository
 import com.example.shacklehotelbuddy.domain.model.Either
 import com.example.shacklehotelbuddy.domain.model.Failure
 import com.example.shacklehotelbuddy.domain.model.Hotel

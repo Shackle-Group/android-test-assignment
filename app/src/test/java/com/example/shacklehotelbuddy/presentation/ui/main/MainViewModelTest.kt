@@ -1,7 +1,7 @@
 package com.example.shacklehotelbuddy.presentation.ui.main
 
 import com.example.shacklehotelbuddy.MainCoroutineRule
-import com.example.shacklehotelbuddy.data.repository.HotelRepository
+import com.example.shacklehotelbuddy.domain.repository.HotelRepository
 import com.example.shacklehotelbuddy.di.DataModule
 import com.example.shacklehotelbuddy.domain.model.SearchDate
 import com.example.shacklehotelbuddy.domain.usecase.CacheHotelSearchUseCase

@@ -1,6 +1,6 @@
 package com.example.shacklehotelbuddy.domain.usecase
 
-import com.example.shacklehotelbuddy.data.repository.HotelRepository
+import com.example.shacklehotelbuddy.domain.repository.HotelRepository
 import com.example.shacklehotelbuddy.domain.model.HotelSearch
 import javax.inject.Inject
 

@@ -1,5 +1,6 @@
 package com.example.shacklehotelbuddy.data.local.datasource
 
+import com.example.shacklehotelbuddy.domain.local.datasource.HotelLocalDataSource
 import com.example.shacklehotelbuddy.domain.model.HotelSearch
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
