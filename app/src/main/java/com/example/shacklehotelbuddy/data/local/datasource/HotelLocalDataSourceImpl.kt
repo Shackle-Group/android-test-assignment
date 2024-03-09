@@ -16,7 +16,9 @@ class HotelLocalDataSourceImpl @Inject constructor(
 ): HotelLocalDataSource {
 
     override suspend fun cacheHotelSearch(hotelSearch: HotelSearch) {
+        // fetch latest list from DB
         hotelSearchDao.getCachedHotelSearches().collect {
+            // check if item already exists - no need to add
             if (!it.map { hotel -> hotel.toHotelSearch() }.contains(hotelSearch)) {
                 hotelSearchDao.cacheHotelSearch(hotelSearch.toHotelSearchEntity())
             }

@@ -1,7 +1,6 @@
 package com.example.shacklehotelbuddy.data.remote.datasource
 
 import com.example.shacklehotelbuddy.data.mapper.toHotelList
-import com.example.shacklehotelbuddy.data.remote.model.Child
 import com.example.shacklehotelbuddy.data.remote.service.HotelSearchService
 import com.example.shacklehotelbuddy.domain.model.Either
 import com.example.shacklehotelbuddy.domain.model.Failure
@@ -18,17 +17,10 @@ class HotelRemoteDataSourceImpl @Inject constructor(
     private val service: HotelSearchService
 ): HotelRemoteDataSource {
 
-    /**
-     * Remote call to the endpoint to fetch list of hotels based on [hotelSearch]
-     * @param hotelSearch user selected search filter
-     * */
+    // Note: Booking.com hotel endpoints is used to illustrate the list of hotels
     override suspend fun searchHotels(hotelSearch: HotelSearch): Flow<Either<List<Hotel>, Failure>> =
         flow {
             hotelSearch.apply {
-                val childrenList = mutableListOf<Child>()
-                for (i in 1..children) {
-                    childrenList.add(Child())
-                }
 
                 val result = service.searchHotels(
                     checkInDate = checkInDate.toBookingFormat(),
@@ -46,26 +38,31 @@ class HotelRemoteDataSourceImpl @Inject constructor(
                     }
                 )
 
-//            val result = service.searchHotels(
-//                HotelSearchRequest(
-//                    rooms = listOf(Room(adults, childrenList)),
-//                    checkInDate = checkInDate,
-//                    checkOutDate = checkOutDate
-//                )
-//            )
+//                /**
+//                 * Code commented below as Api Dojo wasn't working
+//                 **/
 //
-//            val search = result.body()?.data?.propertySearch
-//            emit(if (result.isSuccessful && search != null) {
-//                Either.success(search.toHotelList())
-//            } else {
-//                Either.fail(Failure.NetworkError)
-//            })
-
-//            // mock data
-//            delay(100)
-//            emit(Either.success(mockHotelList))
-//            emit(Either.success(emptyList()))
-//            emit(Either.fail(Failure.NetworkError))
+//                val childrenList = mutableListOf<Child>()
+//                for (i in 1..children) {
+//                    childrenList.add(Child())
+//                }
+//
+//                val result = service.searchHotels(
+//                    HotelSearchRequest(
+//                        rooms = listOf(Room(adults, childrenList)),
+//                        checkInDate = checkInDate,
+//                        checkOutDate = checkOutDate
+//                    )
+//                )
+//
+//                val search = result.body()?.data?.propertySearch
+//                emit(
+//                    if (result.isSuccessful && search != null) {
+//                        Either.success(search.toHotelList())
+//                    } else {
+//                        Either.fail(Failure.NetworkError)
+//                    }
+//                )
             }
         }
 }
