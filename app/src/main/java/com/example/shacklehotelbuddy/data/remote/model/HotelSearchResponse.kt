@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class HotelSearchResponse(
     @SerializedName("data")
-    val data: DataResponse
+    val data: DataResponse?
 )
 
 data class DataResponse(
     @SerializedName("propertySearch")
-    val propertySearch: PropertySearch
+    val propertySearch: PropertySearch?
 )
 
 data class PropertySearch(
     @SerializedName("properties")
-    val properties: List<Property>
+    val properties: List<Property> = emptyList()
 )
 
 data class Property(
@@ -34,30 +34,30 @@ data class Property(
 
 data class PropertyImage(
     @SerializedName("image")
-    val image: Image
+    val image: Image?
 )
 
 data class Image(
     @SerializedName("url")
-    val url: String
+    val url: String?
 )
 
 data class Neighborhood(
     @SerializedName("name")
-    val name: String
+    val name: String?
 )
 
 data class Reviews(
     @SerializedName("score")
-    val score: Double
+    val score: Double?
 )
 
 data class PriceResponse(
     @SerializedName("lead")
-    val lead: Lead
+    val lead: Lead?
 )
 
 data class Lead(
     @SerializedName("formatted")
-    val formatted: String
+    val formatted: String?
 )

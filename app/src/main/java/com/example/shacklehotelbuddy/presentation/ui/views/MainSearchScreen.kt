@@ -239,6 +239,7 @@ fun CheckInDate(
     checkInDate: SearchDate,
     updateCheckInDate: (Int, Int, Int) -> Unit
 ) {
+    //todo generate a common composable for reuse
     Row(
         modifier = Modifier
             .padding(start = 12.dp)
@@ -309,8 +310,7 @@ fun CheckOutDate(
         modifier = Modifier
             .padding(start = 12.dp)
             .fillMaxWidth()
-            .height(52.dp)
-            .background(ShackleHotelBuddyTheme.colors.white),
+            .height(52.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
