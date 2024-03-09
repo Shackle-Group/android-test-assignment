@@ -75,6 +75,15 @@ android {
         exclude 'META-INF/LGPL2.1'
         exclude 'META-INF/*.kotlin_module'
     }
+    // common test code to avoid duplicating common files
+    sourceSets {
+        test {
+            java.srcDirs += "src/mainTest/java"
+        }
+        androidTest {
+            java.srcDirs += "src/mainTest/java"
+        }
+    }
 }
 
 dependencies {
