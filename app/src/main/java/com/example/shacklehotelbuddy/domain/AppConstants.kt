@@ -9,9 +9,4 @@ object AppConstants {
     const val HEADER_CONTENT_TYPE = "content-type"
 
     const val HEADER_CONTENT_TYPE_VALUE = "application/json"
-
-    //todo move to config.properties
-    const val BASE_URL="https://hotels4.p.rapidapi.com/"
-    const val HEADER_HOST="hotels4.p.rapidapi.com"
-    const val HEADER_API_KEY="c686a3b577msh4ed7947927cd224p16b2d7jsn1c3131e2c77d"
 }

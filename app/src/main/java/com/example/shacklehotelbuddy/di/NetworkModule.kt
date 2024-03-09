@@ -1,5 +1,6 @@
 package com.example.shacklehotelbuddy.di
 
+import com.example.shacklehotelbuddy.BuildConfig
 import com.example.shacklehotelbuddy.data.remote.service.HotelSearchService
 import com.example.shacklehotelbuddy.domain.AppConstants
 import dagger.Module
@@ -23,8 +24,8 @@ object NetworkModule {
     fun provideRequestInterceptor(): Interceptor = Interceptor { chain ->
         val request = chain.request()
             .newBuilder()
-            .header(AppConstants.HEADER_RAPID_API_KEY, AppConstants.HEADER_API_KEY)
-            .header(AppConstants.HEADER_RAPID_API_HOST, AppConstants.HEADER_HOST)
+            .header(AppConstants.HEADER_RAPID_API_KEY, BuildConfig.RAPID_HEADER_API_KEY)
+            .header(AppConstants.HEADER_RAPID_API_HOST, BuildConfig.RAPID_HEADER_HOST)
             .header(AppConstants.HEADER_CONTENT_TYPE, AppConstants.HEADER_CONTENT_TYPE_VALUE)
             .build()
         chain.proceed(request)
@@ -44,7 +45,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
-        .baseUrl(AppConstants.BASE_URL)
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
