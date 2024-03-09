@@ -4,7 +4,7 @@
     <string name="adults">Adults</string>
     <string name="recent_searches">Recent Searches</string>
     <string name="search">Search</string>
-    <string name="select_guests_date_time">Select guests, date and time</string>
+    <string name="select_guests_date_time">Select guests,\ndate and time</string>
     <string name="icon_recent_search">Recent Search</string>
     <string name="check_in_date">Check-in date</string>
     <string name="check_out_date">Check-out date</string>

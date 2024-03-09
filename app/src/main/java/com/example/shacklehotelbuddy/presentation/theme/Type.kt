@@ -13,9 +13,8 @@ data class CustomTypography(
     val titleLarge: TextStyle = TextStyle(
         fontFamily = FontFamily.SansSerif,
         fontWeight = FontWeight.Normal,
-        fontSize = 44.sp,
-        lineHeight = 48.4.sp,
-        letterSpacing = 2.sp
+        fontSize = 42.sp,
+        letterSpacing = 0.5.sp
     ),
     val buttonMedium: TextStyle = TextStyle(
         fontFamily = FontFamily.SansSerif,
