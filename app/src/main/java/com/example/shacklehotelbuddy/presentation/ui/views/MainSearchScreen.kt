@@ -385,7 +385,6 @@ fun Adults(
             modifier = Modifier
                 .weight(1f)
                 .height(52.dp)
-                .background(ShackleHotelBuddyTheme.colors.white)
                 .padding(8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
