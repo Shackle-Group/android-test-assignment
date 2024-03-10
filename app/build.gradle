@@ -35,13 +35,28 @@ android {
         buildConfigField "String", "RAPID_HEADER_HOST", getConfigurationProperty("RAPID_HEADER_HOST")
         buildConfigField "String", "RAPID_HEADER_API_KEY", getConfigurationProperty("RAPID_HEADER_API_KEY")
 
-        testInstrumentationRunner "com.example.shacklehotelbuddy.CustomTestRunner"
         vectorDrawables {
             useSupportLibrary true
         }
+
+        //room database schema
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/dbschemas".toString()]
+            }
+        }
+
+        // instrumentation tests
+        testInstrumentationRunner "com.example.shacklehotelbuddy.CustomTestRunner"
+        testBuildType "instrumentalTests"
     }
 
     buildTypes {
+        instrumentalTests {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

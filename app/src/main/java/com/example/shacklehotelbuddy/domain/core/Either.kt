@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.domain.model
+package com.example.shacklehotelbuddy.domain.core
 
 sealed class Either<out S, out F> {
 

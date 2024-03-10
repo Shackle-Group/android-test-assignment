@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.domain.model
+package com.example.shacklehotelbuddy.domain.model.hotelsearch
 
 data class Hotel(
     val id: String,
@@ -6,5 +6,5 @@ data class Hotel(
     val imageUrl: String,
     val price: String,
     val location: String,
-    val star: String
+    val reviews: String
 )

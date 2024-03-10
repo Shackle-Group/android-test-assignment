@@ -1,8 +1,8 @@
 package com.example.shacklehotelbuddy.data.mock
 
-import com.example.shacklehotelbuddy.domain.model.Hotel
-import com.example.shacklehotelbuddy.domain.model.HotelSearch
-import com.example.shacklehotelbuddy.domain.model.SearchDate
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.Hotel
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.SearchDate
 
 object MockHotelSearch {
 

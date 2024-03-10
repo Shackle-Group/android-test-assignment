@@ -1,11 +1,16 @@
 package com.example.shacklehotelbuddy.data.remote.datasource
 
+import com.example.shacklehotelbuddy.data.mapper.NetworkErrorMapper
+import com.example.shacklehotelbuddy.data.mapper.mapCheckInDate
 import com.example.shacklehotelbuddy.data.mapper.toHotelList
+import com.example.shacklehotelbuddy.data.remote.model.Child
+import com.example.shacklehotelbuddy.data.remote.model.HotelRoom
+import com.example.shacklehotelbuddy.data.remote.model.HotelSearchRequest
+import com.example.shacklehotelbuddy.data.remote.model.NetworkError
 import com.example.shacklehotelbuddy.data.remote.service.HotelSearchService
-import com.example.shacklehotelbuddy.domain.model.Either
-import com.example.shacklehotelbuddy.domain.model.Failure
-import com.example.shacklehotelbuddy.domain.model.Hotel
-import com.example.shacklehotelbuddy.domain.model.HotelSearch
+import com.example.shacklehotelbuddy.domain.core.Either
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.Hotel
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
 import com.example.shacklehotelbuddy.domain.remote.datasource.HotelRemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -17,52 +22,33 @@ class HotelRemoteDataSourceImpl @Inject constructor(
     private val service: HotelSearchService
 ): HotelRemoteDataSource {
 
-    // Note: Booking.com hotel endpoints is used to illustrate the list of hotels
-    override suspend fun searchHotels(hotelSearch: HotelSearch): Flow<Either<List<Hotel>, Failure>> =
+    override suspend fun searchHotels(hotelSearch: HotelSearch): Flow<Either<List<Hotel>, NetworkError>> =
         flow {
             hotelSearch.apply {
+                // covert number of children to list with default age
+                val childrenList = mutableListOf<Child>()
+                for (i in 1..children) {
+                    childrenList.add(Child())
+                }
+                // rooms for filter with adults and list of children
+                val rooms = listOf(HotelRoom(adults, childrenList))
 
-                val result = service.searchHotels(
-                    checkInDate = checkInDate.toBookingFormat(),
-                    checkOutDate = checkOutDate.toBookingFormat(),
-                    adults = adults.toString(),
-                    children = children.toString()
-                )
-                val hotels = result.body()
-
-                emit(
-                    if (result.isSuccessful && hotels != null) {
-                        Either.success(hotels.toHotelList())
-                    } else {
-                        Either.fail(Failure.NetworkError)
-                    }
-                )
-
-//                /**
-//                 * Code commented below as Api Dojo wasn't working
-//                 **/
-//
-//                val childrenList = mutableListOf<Child>()
-//                for (i in 1..children) {
-//                    childrenList.add(Child())
-//                }
-//
-//                val result = service.searchHotels(
-//                    HotelSearchRequest(
-//                        rooms = listOf(Room(adults, childrenList)),
-//                        checkInDate = checkInDate,
-//                        checkOutDate = checkOutDate
-//                    )
-//                )
-//
-//                val search = result.body()?.data?.propertySearch
-//                emit(
-//                    if (result.isSuccessful && search != null) {
-//                        Either.success(search.toHotelList())
-//                    } else {
-//                        Either.fail(Failure.NetworkError)
-//                    }
-//                )
+                service.searchHotels(
+                    HotelSearchRequest(
+                        rooms = rooms,
+                        checkInDate = checkInDate.mapCheckInDate(),
+                        checkOutDate = checkOutDate.mapCheckInDate()
+                    )
+                ).let {
+                    emit(
+                        if (it.isSuccessful && it.body() != null) {
+                            Either.success(it.body()!!.toHotelList())
+                        } else {
+                            // parse error to proper network error
+                            Either.Fail(NetworkErrorMapper.toErrorCause(response = it))
+                        }
+                    )
+                }
             }
         }
 }

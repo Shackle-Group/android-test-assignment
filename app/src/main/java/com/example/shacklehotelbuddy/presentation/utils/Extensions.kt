@@ -1,7 +1,7 @@
 package com.example.shacklehotelbuddy.presentation.utils
 
 import com.example.shacklehotelbuddy.R
-import com.example.shacklehotelbuddy.domain.model.SearchUiError
+import com.example.shacklehotelbuddy.domain.model.ui.SearchUiError
 import kotlin.math.min
 import kotlin.math.max
 

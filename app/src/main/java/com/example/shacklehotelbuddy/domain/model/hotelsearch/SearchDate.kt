@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.domain.model
+package com.example.shacklehotelbuddy.domain.model.hotelsearch
 
 data class SearchDate(
     val day: String,
@@ -6,6 +6,4 @@ data class SearchDate(
     val year: String
 ) {
     override fun toString(): String = "${day.ifEmpty { "DD" }}/${month.ifEmpty { "MM" }}/${year.ifEmpty { "YY" }}"
-
-    fun toBookingFormat(): String = "${year.ifEmpty { "YY" }}-${month.ifEmpty { "MM" }}-${day.ifEmpty { "DD" }}"
 }

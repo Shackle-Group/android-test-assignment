@@ -29,7 +29,9 @@ data class Property(
     @SerializedName("star")
     val star: String?,
     @SerializedName("price")
-    val price: PriceResponse?
+    val price: PriceResponse?,
+    @SerializedName("reviews")
+    val reviews: Reviews?
 )
 
 data class PropertyImage(
@@ -49,15 +51,17 @@ data class Neighborhood(
 
 data class Reviews(
     @SerializedName("score")
-    val score: Double?
+    val score: String?,
+    @SerializedName("total")
+    val total: String?
 )
 
 data class PriceResponse(
-    @SerializedName("lead")
-    val lead: Lead?
+    @SerializedName("options")
+    val options: List<Options>? = emptyList()
 )
 
-data class Lead(
-    @SerializedName("formatted")
-    val formatted: String?
+data class Options(
+    @SerializedName("formattedDisplayPrice")
+    val formattedDisplayPrice: String?
 )
