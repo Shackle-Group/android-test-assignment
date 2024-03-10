@@ -23,7 +23,7 @@ object DatabaseModule {
             context,
             HotelSearchDatabase::class.java,
             DATABASE_HOTEL_SEARCH
-        ).build()
+        ).fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides

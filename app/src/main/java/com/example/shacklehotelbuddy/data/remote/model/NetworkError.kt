@@ -9,9 +9,9 @@ private const val ERROR_SERVER_INTERNAL = "Something went wrong"
 private const val ERROR_SERVER_TEMPORARY_UNAVAILABLE = "Server is temporarily unavailable."
 private const val ERROR_SERVER_MAINTENANCE = "Technical works are in progress."
 
-abstract class BaseError(message: String = "", cause: Throwable? = null) : Throwable(message)
+abstract class BaseError(message: String = "") : Throwable(message)
 
-sealed class NetworkError(errorMessage: String, cause: Throwable? = null) : BaseError(errorMessage, cause) {
+sealed class NetworkError(errorMessage: String, cause: Throwable? = null) : BaseError(errorMessage) {
     object Authentication : NetworkError(ERROR_AUTHENTICATION)
     object InvalidRequest : NetworkError(ERROR_INVALID_REQUEST)
     object Unauthorized : NetworkError(ERROR_UNAUTHORIZED)
@@ -21,5 +21,5 @@ sealed class NetworkError(errorMessage: String, cause: Throwable? = null) : Base
     object ServerTemporaryUnavailable : NetworkError(ERROR_SERVER_TEMPORARY_UNAVAILABLE)
     object ServerMaintenance : NetworkError(ERROR_SERVER_MAINTENANCE)
     data class OperationCode(val opCode: String, val responseCode: Int) : NetworkError(opCode)
-    data class Unknown(val errorMessage: String = "", override val cause: Throwable? = null) : NetworkError(errorMessage, cause)
+    data class Unknown(val errorMessage: String = "") : NetworkError(errorMessage)
 }

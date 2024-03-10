@@ -8,9 +8,10 @@ Clean Architecture + MVVM (Model View View Model)
 One activity based app with following 2 screens:
 
 1. Main Search Screen:
-![Screenshot_20240309_200705.png](screenshots/Screenshot_20240309_200705.png)
+![One Recent Search](screenshots/Search_1_recent_search.png)
+![Multiple Recent Search](screenshots%2FSearch_Multiple_recent_searches.png)
 2. Hotel List Screen
-![Screenshot_20240309_200737.png](screenshots/Screenshot_20240309_200737.png)
+![Hotel List](screenshots/Hotel_List_Screenshot.png)
 
 ## Libraries:
 - Jetpack Compose
