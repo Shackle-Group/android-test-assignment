@@ -12,4 +12,7 @@ object AppConstants {
 
     const val PLACEHOLDER_UNAVAILABLE_VALUE = "-"
     const val PLACEHOLDER_NO_REVIEWS = "No reviews"
+
+    const val OKHTTP_LOGGING_INTERCEPTOR = "okhttp_logging_interceptor"
+    const val OKHTTP_CURL_INTERCEPTOR = "okhttp_curl_interceptor"
 }

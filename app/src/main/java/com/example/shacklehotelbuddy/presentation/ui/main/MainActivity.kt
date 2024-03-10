@@ -8,11 +8,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.shacklehotelbuddy.BuildConfig
 import com.example.shacklehotelbuddy.presentation.theme.ShackleHotelBuddyTheme
 import com.example.shacklehotelbuddy.presentation.ui.views.HotelListScreen
 import com.example.shacklehotelbuddy.presentation.ui.views.MainSearchScreen
 import com.example.shacklehotelbuddy.presentation.utils.Destination
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -20,6 +22,7 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        plantTimber()
         setContent {
             ShackleHotelBuddyTheme {
                 val navController = rememberNavController()
@@ -36,6 +39,12 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+        }
+    }
+
+    private fun plantTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
         }
     }
 }
