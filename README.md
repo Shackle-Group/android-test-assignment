@@ -2,7 +2,10 @@
 This app gives user filter to search hotel and shows list of hotels
 
 ## Design Pattern:
-Clean Architecture + MVVM (Model View View Model)
+Clean Architecture MVVM (Model View View Model)
+ 
+![Search_1_recent_search](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*g6bqauGqu1u9Q1kZoNBvDQ.png)
+Following image used from [this](https://medium.com/@ami0275/mvvm-clean-architecture-pattern-in-android-with-use-cases-eff7edc2ef76) article
 
 ## Application Flow:
 One activity based app with following 2 screens:
@@ -32,9 +35,6 @@ One activity based app with following 2 screens:
 - Mockk for tests
 - Robolectric for tests
 
-## Building
-Open the project in Android studio. Press run or debug to run on a connected device or an emulator.
-
 ## Testing
-The project uses local unit tests that run on your computer. On Mac machine with a connected device or an emulator, to run both of them and generate a coverage report, you can run:
-```gradlew fullCoverageReport```
+The project contains local unit tests that run on local machine and generate a coverage report using from terminal ```gradlew fullCoverageReport```
+The project contains instrument tests that run on a device or emulator. Build type need to be selected: `instrumentalTests` 
