@@ -10,7 +10,7 @@ interface HotelRemoteDataSource {
     /**
      * Remote call to the endpoint to fetch list of hotels based on [hotelSearch]
      * @param hotelSearch user selected search filter
-     * @return Either object of Success with list of hotels or []NetworkError]
+     * @return Either object of Success with list of hotels or [NetworkError]
      * */
     suspend fun searchHotels(hotelSearch: HotelSearch): Flow<Either<List<Hotel>, NetworkError>>
 }

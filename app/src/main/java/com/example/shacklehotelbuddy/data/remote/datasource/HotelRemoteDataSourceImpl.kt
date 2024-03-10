@@ -44,6 +44,7 @@ class HotelRemoteDataSourceImpl @Inject constructor(
                         if (it.isSuccessful && it.body() != null) {
                             Either.success(it.body()!!.toHotelList())
                         } else {
+                            // parse error to proper network error
                             Either.Fail(NetworkErrorMapper.toErrorCause(response = it))
                         }
                     )

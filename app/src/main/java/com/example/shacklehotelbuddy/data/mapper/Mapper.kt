@@ -1,7 +1,6 @@
 package com.example.shacklehotelbuddy.data.mapper
 
 import com.example.shacklehotelbuddy.data.local.model.HotelSearchEntity
-import com.example.shacklehotelbuddy.data.remote.model.BookingHotelSearchResponse
 import com.example.shacklehotelbuddy.data.remote.model.CheckInDate
 import com.example.shacklehotelbuddy.data.remote.model.HotelSearchResponse
 import com.example.shacklehotelbuddy.domain.core.AppConstants.PLACEHOLDER_UNAVAILABLE_VALUE
@@ -73,23 +72,4 @@ fun HotelSearchResponse.toHotelList(): List<Hotel> {
 
 fun parseSearchDate(day: Int, month: Int, year: Int): SearchDate {
     return SearchDate(day.toString(), month.toString(), year.toString())
-}
-
-fun BookingHotelSearchResponse.toHotelList(): List<Hotel> {
-    val list = mutableListOf<Hotel>()
-    result.map { hotel ->
-        hotel?.let {
-            list.add(
-                Hotel(
-                    id = it.id ?: "",
-                    name = it.hotelName ?: "",
-                    imageUrl = it.maxPhotoUrl ?: "",
-                    price = it.composite_price_breakdown?.all_inclusive_amount?.amount_rounded ?: "",
-                    location = it.city ?: "",
-                    star = it.reviewScore ?: ""
-                )
-            )
-        }
-    }
-    return list
 }
