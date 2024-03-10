@@ -4,7 +4,7 @@ import com.example.shacklehotelbuddy.data.local.database.HotelSearchDao
 import com.example.shacklehotelbuddy.data.mapper.toHotelSearch
 import com.example.shacklehotelbuddy.data.mapper.toHotelSearchEntity
 import com.example.shacklehotelbuddy.domain.local.datasource.HotelLocalDataSource
-import com.example.shacklehotelbuddy.domain.model.HotelSearch
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

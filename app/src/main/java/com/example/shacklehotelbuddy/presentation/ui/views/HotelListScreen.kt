@@ -38,10 +38,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.shacklehotelbuddy.R
-import com.example.shacklehotelbuddy.domain.model.Hotel
-import com.example.shacklehotelbuddy.domain.model.mockHotelList
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.Hotel
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.mockHotelList
 import com.example.shacklehotelbuddy.presentation.theme.ShackleHotelBuddyTheme
-import com.example.shacklehotelbuddy.presentation.ui.main.HotelSearchUiState
+import com.example.shacklehotelbuddy.domain.model.ui.HotelSearchUiState
 import com.example.shacklehotelbuddy.presentation.ui.main.MainViewModel
 
 
@@ -79,7 +79,7 @@ fun HotelListScreen(viewModel: MainViewModel, navController: NavHostController) 
             when(uiState) {
                 HotelSearchUiState.Done -> HotelList(hotelList)
                 HotelSearchUiState.InProgress -> ProgressView()
-                HotelSearchUiState.Error -> ErrorView()
+                is HotelSearchUiState.Error -> ErrorView(uiState as HotelSearchUiState.Error)
                 else -> {}
             }
         }
@@ -99,8 +99,10 @@ fun ProgressView() {
     }
 }
 @Composable
-fun ErrorView() {
-    CentralText(stringResource(id = R.string.error_endpoint))
+fun ErrorView(error: HotelSearchUiState.Error) {
+    CentralText(
+        stringResource(id = R.string.error_endpoint) + error.networkError?.message?.let { "\n$it" }
+    )
     Toast.makeText(
         LocalContext.current,
         stringResource(R.string.network_error),
@@ -212,13 +214,3 @@ fun HotelListPreview() {
         HotelList(mockHotelList)
     }
 }
-
-//@Preview(showBackground = true)
-//@Composable
-//fun HotelListPreview(
-//    @PreviewParameter(MyPreviewParameterProvider::class) viewModel: MainViewModel
-//) {
-//    ShackleHotelBuddyTheme {
-//        HotelListScreen(viewModel, rememberNavController())
-//    }
-//}

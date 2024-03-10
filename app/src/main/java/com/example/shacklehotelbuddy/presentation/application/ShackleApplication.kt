@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.presentation.ui.application
+package com.example.shacklehotelbuddy.presentation.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

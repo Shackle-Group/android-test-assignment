@@ -1,7 +1,7 @@
 package com.example.shacklehotelbuddy.domain.usecase
 
 import com.example.shacklehotelbuddy.domain.repository.HotelRepository
-import com.example.shacklehotelbuddy.domain.model.HotelSearch
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
 import javax.inject.Inject
 
 class CacheHotelSearchUseCase @Inject constructor(private val repository: HotelRepository) {

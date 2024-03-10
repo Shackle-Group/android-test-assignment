@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.domain.model
+package com.example.shacklehotelbuddy.domain.model.ui
 
 sealed class SearchUiError {
     object CheckInError: SearchUiError()

@@ -3,15 +3,15 @@ package com.example.shacklehotelbuddy.presentation.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.shacklehotelbuddy.data.mapper.parseSearchDate
-import com.example.shacklehotelbuddy.domain.model.Either
-import com.example.shacklehotelbuddy.domain.model.Failure
-import com.example.shacklehotelbuddy.domain.model.Hotel
-import com.example.shacklehotelbuddy.domain.model.HotelSearch
-import com.example.shacklehotelbuddy.domain.model.SearchDate
-import com.example.shacklehotelbuddy.domain.model.SearchUiError
+import com.example.shacklehotelbuddy.domain.core.Either
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.Hotel
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.SearchDate
+import com.example.shacklehotelbuddy.domain.model.ui.SearchUiError
 import com.example.shacklehotelbuddy.domain.usecase.CacheHotelSearchUseCase
 import com.example.shacklehotelbuddy.domain.usecase.GetCachedHotelSearchesUseCase
 import com.example.shacklehotelbuddy.domain.usecase.SearchHotelsUseCase
+import com.example.shacklehotelbuddy.domain.model.ui.HotelSearchUiState
 import com.example.shacklehotelbuddy.presentation.utils.updateCounter
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers.IO
@@ -42,9 +42,6 @@ class MainViewModel @Inject constructor(
 
     private val _cachedSearchList = MutableStateFlow<List<HotelSearch>>(emptyList())
     val cachedSearchList = _cachedSearchList.asStateFlow()
-
-    private val _error = MutableStateFlow<Failure?>(null)
-    val error = _error.asStateFlow()
 
     init {
         getCachedHotelSearches()
@@ -79,8 +76,7 @@ class MainViewModel @Inject constructor(
                             _uiState.value = HotelSearchUiState.Done
                         }
                         is Either.Fail -> {
-                            _error.value = result.value
-                            _uiState.value = HotelSearchUiState.Error
+                            _uiState.value = HotelSearchUiState.Error(result.value)
                         }
                     }
                 }
@@ -151,11 +147,4 @@ class MainViewModel @Inject constructor(
             else null
         }
     }
-}
-
-sealed class HotelSearchUiState {
-    object None: HotelSearchUiState()
-    object InProgress: HotelSearchUiState()
-    object Error: HotelSearchUiState()
-    object Done: HotelSearchUiState()
 }

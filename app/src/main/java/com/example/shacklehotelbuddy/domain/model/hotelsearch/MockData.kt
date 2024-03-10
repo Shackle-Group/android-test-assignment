@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.domain.model
+package com.example.shacklehotelbuddy.domain.model.hotelsearch
 
 val mockHotel = Hotel(
     id = "",

@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.shacklehotelbuddy.data.local.database.HotelSearchDao
 import com.example.shacklehotelbuddy.data.local.database.HotelSearchDatabase
-import com.example.shacklehotelbuddy.domain.AppConstants.DATABASE_HOTEL_SEARCH
+import com.example.shacklehotelbuddy.domain.core.AppConstants.DATABASE_HOTEL_SEARCH
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

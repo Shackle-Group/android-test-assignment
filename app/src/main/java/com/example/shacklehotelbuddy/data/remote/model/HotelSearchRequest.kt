@@ -1,17 +1,16 @@
 package com.example.shacklehotelbuddy.data.remote.model
 
 import androidx.annotation.Keep
-import com.example.shacklehotelbuddy.domain.model.SearchDate
 import com.google.gson.annotations.SerializedName
 
 @Keep
 data class HotelSearchRequest(
     @SerializedName("rooms")
-    val rooms: List<Room>,
+    val rooms: List<HotelRoom>,
     @SerializedName("checkInDate")
-    val checkInDate: SearchDate,
+    val checkInDate: CheckInDate,
     @SerializedName("checkOutDate")
-    val checkOutDate: SearchDate,
+    val checkOutDate: CheckInDate,
     @SerializedName("currency")
     val currency: String = "USD",
     @SerializedName("locale")
@@ -32,7 +31,13 @@ data class HotelSearchRequest(
     val filters: Filter = Filter()
 )
 
-data class Room(
+data class CheckInDate(
+    val day: Int,
+    val month: Int,
+    val year: Int
+)
+
+data class HotelRoom(
     @SerializedName("adults")
     val adults: Int,
     @SerializedName("children")
@@ -41,7 +46,7 @@ data class Room(
 
 data class Child(
     @SerializedName("age")
-    val age: Int = 7
+    val age: Int = 5
 )
 
 data class DestinationEntity(

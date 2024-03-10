@@ -2,10 +2,12 @@ package com.example.shacklehotelbuddy.data.mapper
 
 import com.example.shacklehotelbuddy.data.local.model.HotelSearchEntity
 import com.example.shacklehotelbuddy.data.remote.model.BookingHotelSearchResponse
-import com.example.shacklehotelbuddy.data.remote.model.PropertySearch
-import com.example.shacklehotelbuddy.domain.model.Hotel
-import com.example.shacklehotelbuddy.domain.model.HotelSearch
-import com.example.shacklehotelbuddy.domain.model.SearchDate
+import com.example.shacklehotelbuddy.data.remote.model.CheckInDate
+import com.example.shacklehotelbuddy.data.remote.model.HotelSearchResponse
+import com.example.shacklehotelbuddy.domain.core.AppConstants.PLACEHOLDER_UNAVAILABLE_VALUE
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.Hotel
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.SearchDate
 
 
 fun HotelSearchEntity.toHotelSearch(): HotelSearch {
@@ -19,14 +21,14 @@ fun HotelSearchEntity.toHotelSearch(): HotelSearch {
 
 fun HotelSearch.toHotelSearchEntity(): HotelSearchEntity {
     return HotelSearchEntity(
-        checkInDate = checkInDate.parseToString(),
-        checkOutDate = checkOutDate.parseToString(),
+        checkInDate = checkInDate.parseToFormattedString(),
+        checkOutDate = checkOutDate.parseToFormattedString(),
         adults = adults,
         children = children
     )
 }
 
-fun SearchDate.parseToString(): String {
+fun SearchDate.parseToFormattedString(): String {
     return "$day/$month/$year"
 }
 
@@ -39,17 +41,34 @@ fun String.toSearchDate(): SearchDate {
     }
 }
 
-fun PropertySearch.toHotelList(): List<Hotel> {
-    return properties.map {
-        Hotel(
-            id = it.id ?: "",
-            name = it.name ?: "",
-            imageUrl = it.propertyImage?.image?.url ?: "",
-            price = it.price?.lead?.formatted ?: "",
-            location = it.neighborhood?.name ?: "",
-            star = it.star ?: ""
+fun SearchDate.mapCheckInDate(): CheckInDate {
+    return try {
+        CheckInDate(
+            this.day.toInt(),
+            this.month.toInt(),
+            this.year.toInt()
+        )
+    } catch (e: Exception) {
+        CheckInDate(1, 1, 2025)
+    }
+}
+
+fun HotelSearchResponse.toHotelList(): List<Hotel> {
+    val list = mutableListOf<Hotel>()
+    data?.propertySearch?.properties?.forEach {
+        list.add(
+            Hotel(
+                id = it.id ?: PLACEHOLDER_UNAVAILABLE_VALUE,
+                name = it.name ?: PLACEHOLDER_UNAVAILABLE_VALUE,
+                imageUrl = it.propertyImage?.image?.url ?: PLACEHOLDER_UNAVAILABLE_VALUE,
+                price = it.price?.options?.firstOrNull()?.formattedDisplayPrice
+                    ?: PLACEHOLDER_UNAVAILABLE_VALUE,
+                location = it.neighborhood?.name ?: PLACEHOLDER_UNAVAILABLE_VALUE,
+                star = it.star ?: PLACEHOLDER_UNAVAILABLE_VALUE
+            )
         )
     }
+    return list
 }
 
 fun parseSearchDate(day: Int, month: Int, year: Int): SearchDate {

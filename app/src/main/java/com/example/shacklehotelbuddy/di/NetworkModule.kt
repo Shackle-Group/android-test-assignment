@@ -2,7 +2,7 @@ package com.example.shacklehotelbuddy.di
 
 import com.example.shacklehotelbuddy.BuildConfig
 import com.example.shacklehotelbuddy.data.remote.service.HotelSearchService
-import com.example.shacklehotelbuddy.domain.AppConstants
+import com.example.shacklehotelbuddy.domain.core.AppConstants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

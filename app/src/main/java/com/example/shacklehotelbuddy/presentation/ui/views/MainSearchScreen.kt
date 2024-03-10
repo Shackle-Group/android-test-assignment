@@ -48,8 +48,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.shacklehotelbuddy.R
-import com.example.shacklehotelbuddy.domain.model.HotelSearch
-import com.example.shacklehotelbuddy.domain.model.SearchDate
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
+import com.example.shacklehotelbuddy.domain.model.hotelsearch.SearchDate
 import com.example.shacklehotelbuddy.presentation.theme.ShackleHotelBuddyTheme
 import com.example.shacklehotelbuddy.presentation.ui.main.MainViewModel
 import com.example.shacklehotelbuddy.presentation.utils.Destination
