@@ -11,4 +11,5 @@ object AppConstants {
     const val HEADER_CONTENT_TYPE_VALUE = "application/json"
 
     const val PLACEHOLDER_UNAVAILABLE_VALUE = "-"
+    const val PLACEHOLDER_NO_REVIEWS = "No reviews"
 }

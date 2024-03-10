@@ -6,5 +6,5 @@ data class Hotel(
     val imageUrl: String,
     val price: String,
     val location: String,
-    val star: String
+    val reviews: String
 )

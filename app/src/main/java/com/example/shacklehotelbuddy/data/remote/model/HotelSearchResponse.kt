@@ -51,7 +51,9 @@ data class Neighborhood(
 
 data class Reviews(
     @SerializedName("score")
-    val score: Double?
+    val score: String?,
+    @SerializedName("total")
+    val total: String?
 )
 
 data class PriceResponse(

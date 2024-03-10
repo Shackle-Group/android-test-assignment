@@ -1,12 +1,12 @@
 package com.example.shacklehotelbuddy.data.mapper
 
 import com.example.shacklehotelbuddy.data.local.model.HotelSearchEntity
-import com.example.shacklehotelbuddy.data.remote.model.CheckInDate
 import com.example.shacklehotelbuddy.data.remote.model.HotelSearchResponse
+import com.example.shacklehotelbuddy.data.remote.model.Reviews
+import com.example.shacklehotelbuddy.domain.core.AppConstants.PLACEHOLDER_NO_REVIEWS
 import com.example.shacklehotelbuddy.domain.core.AppConstants.PLACEHOLDER_UNAVAILABLE_VALUE
 import com.example.shacklehotelbuddy.domain.model.hotelsearch.Hotel
 import com.example.shacklehotelbuddy.domain.model.hotelsearch.HotelSearch
-import com.example.shacklehotelbuddy.domain.model.hotelsearch.SearchDate
 
 
 fun HotelSearchEntity.toHotelSearch(): HotelSearch {
@@ -27,31 +27,6 @@ fun HotelSearch.toHotelSearchEntity(): HotelSearchEntity {
     )
 }
 
-fun SearchDate.parseToFormattedString(): String {
-    return "$day/$month/$year"
-}
-
-fun String.toSearchDate(): SearchDate {
-    return try {
-        val slices = this.split("/").take(3)
-        SearchDate(slices[0], slices[1], slices[2])
-    } catch (e: Exception) {
-        SearchDate("", "", "")
-    }
-}
-
-fun SearchDate.mapCheckInDate(): CheckInDate {
-    return try {
-        CheckInDate(
-            this.day.toInt(),
-            this.month.toInt(),
-            this.year.toInt()
-        )
-    } catch (e: Exception) {
-        CheckInDate(1, 1, 2025)
-    }
-}
-
 fun HotelSearchResponse.toHotelList(): List<Hotel> {
     val list = mutableListOf<Hotel>()
     data?.propertySearch?.properties?.forEach {
@@ -63,13 +38,21 @@ fun HotelSearchResponse.toHotelList(): List<Hotel> {
                 price = it.price?.options?.firstOrNull()?.formattedDisplayPrice
                     ?: PLACEHOLDER_UNAVAILABLE_VALUE,
                 location = it.neighborhood?.name ?: PLACEHOLDER_UNAVAILABLE_VALUE,
-                star = it.star ?: PLACEHOLDER_UNAVAILABLE_VALUE
+                reviews = parseReview(it.reviews)
             )
         )
     }
     return list
 }
 
-fun parseSearchDate(day: Int, month: Int, year: Int): SearchDate {
-    return SearchDate(day.toString(), month.toString(), year.toString())
+fun parseReview(reviews: Reviews?): String {
+    var rating = PLACEHOLDER_NO_REVIEWS
+    runCatching {
+        reviews?.apply {
+            if (!total.isNullOrEmpty() && !score.isNullOrEmpty() && total.toInt() > 0) {
+                rating = "$score($total reviews)"
+            }
+        }
+    }
+    return rating
 }

@@ -182,7 +182,7 @@ fun HotelItem(hotel: Hotel) {
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    text = hotel.star,
+                    text = hotel.reviews,
                     style = ShackleHotelBuddyTheme.typography.bodyMediumBold,
                     color = ShackleHotelBuddyTheme.colors.black
                 )
