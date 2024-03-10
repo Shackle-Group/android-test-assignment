@@ -43,6 +43,12 @@ object NetworkErrorMapper {
         )
     }
 
+    fun toErrorCause(throwable: Throwable): NetworkError = when {
+        throwable.isConnectionException -> NetworkError.Connection
+        throwable.isConnectionTimeoutException -> NetworkError.ConnectionTimeout
+        else -> NetworkError.Unknown(throwable.message ?: throwable.toErrorString())
+    }
+
     private fun Throwable.toErrorString() =
         when (this) {
             is HttpException -> "${code()}: $message"

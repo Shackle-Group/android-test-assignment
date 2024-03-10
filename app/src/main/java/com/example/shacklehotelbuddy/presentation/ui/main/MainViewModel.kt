@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -48,9 +49,11 @@ class MainViewModel @Inject constructor(
     }
 
     private fun getCachedHotelSearches() {
-        viewModelScope.launch(IO) {
-            getCachedHotelSearchesUseCase().collect {
-                _cachedSearchList.value = it
+        viewModelScope.launch {
+            withContext(IO) {
+                getCachedHotelSearchesUseCase().collect {
+                    _cachedSearchList.value = it
+                }
             }
         }
     }
@@ -68,6 +71,7 @@ class MainViewModel @Inject constructor(
     fun getHotels() {
         _uiState.value = HotelSearchUiState.InProgress
         viewModelScope.launch {
+            withContext(IO) {
             _hotelSearch.value.let { search ->
                 searchHotelsUseCase(search).collect { result ->
                     when (result) {
@@ -75,11 +79,13 @@ class MainViewModel @Inject constructor(
                             _hotelList.value = result.value
                             _uiState.value = HotelSearchUiState.Done
                         }
+
                         is Either.Fail -> {
                             _uiState.value = HotelSearchUiState.Error(result.value)
                         }
                     }
                 }
+            }
             }
         }
     }

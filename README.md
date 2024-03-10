@@ -8,10 +8,17 @@ Clean Architecture + MVVM (Model View View Model)
 One activity based app with following 2 screens:
 
 1. Main Search Screen:
-![One Recent Search](screenshots/Search_1_recent_search.png)
-![Multiple Recent Search](screenshots%2FSearch_Multiple_recent_searches.png)
+
+| One Recent Search | Multiple Recent Search |
+| :----: | :----: |
+![Search_1_recent_search](https://github.com/Shackle-Group/android-test-assignment/assets/47480605/4b1d707f-6e0f-4719-baa8-20a71a011e96) | ![Search_Multiple_recent_searches](https://github.com/Shackle-Group/android-test-assignment/assets/47480605/767ce49a-aa21-41b4-8c69-20107e1c540b)
 2. Hotel List Screen
-![Hotel List](screenshots/Hotel_List_Screenshot.png)
+
+| Hotel List Screen | - |
+| :----: | :----: |
+![Hotel_List_Screenshot](https://github.com/Shackle-Group/android-test-assignment/assets/47480605/b9da2b4d-419c-493c-aeaf-621c25278faa) | -
+
+
 
 ## Libraries:
 - Jetpack Compose
@@ -21,7 +28,7 @@ One activity based app with following 2 screens:
 - Hilt for DI
 - Room for local caching of recent searches
 - Retrofit with Gson for web services
-- Coil for hotel image  
+- Coil for hotel image
 - Mockk for tests
 - Robolectric for tests
 

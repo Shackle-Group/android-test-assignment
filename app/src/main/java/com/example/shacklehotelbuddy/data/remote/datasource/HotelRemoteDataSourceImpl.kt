@@ -33,13 +33,15 @@ class HotelRemoteDataSourceImpl @Inject constructor(
                 // rooms for filter with adults and list of children
                 val rooms = listOf(HotelRoom(adults, childrenList))
 
-                service.searchHotels(
-                    HotelSearchRequest(
-                        rooms = rooms,
-                        checkInDate = checkInDate.mapCheckInDate(),
-                        checkOutDate = checkOutDate.mapCheckInDate()
+                runCatching {
+                    service.searchHotels(
+                        HotelSearchRequest(
+                            rooms = rooms,
+                            checkInDate = checkInDate.mapCheckInDate(),
+                            checkOutDate = checkOutDate.mapCheckInDate()
+                        )
                     )
-                ).let {
+                }.map {
                     emit(
                         if (it.isSuccessful && it.body() != null) {
                             Either.success(it.body()!!.toHotelList())
@@ -48,6 +50,9 @@ class HotelRemoteDataSourceImpl @Inject constructor(
                             Either.Fail(NetworkErrorMapper.toErrorCause(response = it))
                         }
                     )
+                }.onFailure {
+                    // map error to proper message
+                    emit(Either.Fail(NetworkErrorMapper.toErrorCause(throwable = it)))
                 }
             }
         }
