@@ -1,6 +1,6 @@
 package com.example.shacklehotelbuddy.features.search.viewModels
 
-import com.basetrack.btcodriver.base.mvi.models.MviViewModel
+import com.example.shacklehotelbuddy.base.mvi.MviViewModel
 import com.example.shacklehotelbuddy.features.search.mvi.SearchAction
 import com.example.shacklehotelbuddy.features.search.mvi.SearchIntent
 import com.example.shacklehotelbuddy.features.search.mvi.SearchState
