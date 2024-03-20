@@ -48,6 +48,7 @@ fun SearchScreen(
                 color = ShackleHotelBuddyTheme.colors.grayText,
                 modifier = Modifier
                     .clickable {
+                        searchViewModel.doIt()
                         navController?.navigate(NavigatorWays.HOTEL_LIST)
                     }
             )
