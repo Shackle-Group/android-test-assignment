@@ -1,7 +1,7 @@
 package com.example.shacklehotelbuddy.base.api
 
 import android.app.Application
-import com.example.shacklehotelbuddy.features.search.api.SearchApiService
+import com.example.shacklehotelbuddy.features.hotels.api.SearchApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.features.search.api.request
+package com.example.shacklehotelbuddy.features.hotels.api.request
 
 import com.google.gson.annotations.SerializedName
 
@@ -15,4 +15,32 @@ data class HotelSearchRequest(
     @SerializedName("resultsSize")              val resultsSize: Long,
     @SerializedName("sort")                     val sort: String,
     @SerializedName("filters")                  val filters: FiltersRequest
-)
+) {
+    companion object {
+        fun getInstance(
+            checkInDate: CheckDateRequest,
+            checkOutDate: CheckDateRequest,
+            rooms: List<RoomRequest>,
+        ) = HotelSearchRequest(
+            currency = "USD",
+            eapid = 1,
+            locale = "en_US",
+            siteID = 300000001,
+            destination = DestinationRequest(
+                regionId = "6054439"
+            ),
+            checkInDate = checkInDate,
+            checkOutDate = checkOutDate,
+            rooms = rooms,
+            resultsStartingIndex = 0,
+            resultsSize = 1,
+            sort = "PRICE_LOW_TO_HIGH",
+            filters = FiltersRequest(
+                price = PriceRequest(
+                    max = 150,
+                    min = 100
+                )
+            )
+        )
+    }
+}

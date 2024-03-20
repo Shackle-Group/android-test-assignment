@@ -1,4 +1,4 @@
-package com.example.shacklehotelbuddy.features.search.api.request
+package com.example.shacklehotelbuddy.features.hotels.api.request
 
 import com.google.gson.annotations.SerializedName
 
