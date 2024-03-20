@@ -1,6 +1,6 @@
 package com.example.shacklehotelbuddy.features.hotels.viewModels
 
-import com.basetrack.btcodriver.base.mvi.models.MviViewModel
+import com.example.shacklehotelbuddy.base.mvi.MviViewModel
 import com.example.shacklehotelbuddy.features.hotels.mvi.HotelsAction
 import com.example.shacklehotelbuddy.features.hotels.mvi.HotelsIntent
 import com.example.shacklehotelbuddy.features.hotels.mvi.HotelsState

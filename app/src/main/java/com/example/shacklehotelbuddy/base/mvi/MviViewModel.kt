@@ -1,10 +1,7 @@
-package com.basetrack.btcodriver.base.mvi.models
+package com.example.shacklehotelbuddy.base.mvi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.shacklehotelbuddy.base.mvi.IMviAction
-import com.example.shacklehotelbuddy.base.mvi.IMviIntent
-import com.example.shacklehotelbuddy.base.mvi.IMviState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
