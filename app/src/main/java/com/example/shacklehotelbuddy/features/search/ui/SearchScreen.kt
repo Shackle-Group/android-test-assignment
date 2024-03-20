@@ -17,7 +17,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.shacklehotelbuddy.MainScreen
 import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.base.navigation.NavigatorWays
 import com.example.shacklehotelbuddy.features.search.viewModels.SearchViewModel
@@ -25,7 +24,7 @@ import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 
 @Composable
 fun SearchScreen(
-    navController: NavController,
+    navController: NavController? = null,
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
     Box(
@@ -49,7 +48,7 @@ fun SearchScreen(
                 color = ShackleHotelBuddyTheme.colors.grayText,
                 modifier = Modifier
                     .clickable {
-                        navController.navigate(NavigatorWays.HOTEL_LIST)
+                        navController?.navigate(NavigatorWays.HOTEL_LIST)
                     }
             )
         }
@@ -60,6 +59,6 @@ fun SearchScreen(
 @Composable
 fun GreetingPreview() {
     ShackleHotelBuddyTheme {
-        MainScreen()
+        SearchScreen()
     }
 }

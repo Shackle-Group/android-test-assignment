@@ -16,14 +16,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.example.shacklehotelbuddy.MainScreen
 import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.features.details.viewModels.DetailsViewModel
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 
 @Composable
 fun DetailsScreen(
-    navController: NavController,
+    navController: NavController? = null,
     detailsViewModel: DetailsViewModel = hiltViewModel()
 ) {
     Box(
@@ -54,6 +53,6 @@ fun DetailsScreen(
 @Composable
 fun GreetingPreview() {
     ShackleHotelBuddyTheme {
-        MainScreen()
+        DetailsScreen()
     }
 }
