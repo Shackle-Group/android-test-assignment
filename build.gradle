@@ -38,6 +38,9 @@ ext {
     // Server communications.
     retrofit2Version = '2.9.0'
 
+    // Room.
+    roomVersion = "2.6.1"
+
     // Tests.
     junitVersion = "4.13.2"
     junitExtVersion = "1.1.5"
