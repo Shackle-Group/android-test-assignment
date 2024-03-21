@@ -9,4 +9,6 @@
     <string name="search_recent_searches">Recent searches</string>
     <string name="search_recent_item_content">%1$d adult, %2$d children</string>
     <string name="search_search">Search</string>
+
+    <string name="search_date_picker_title">Search results</string>
 </resources>

@@ -73,6 +73,7 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:$composeHiltNavigationVersion"
     implementation "androidx.lifecycle:lifecycle-runtime-compose:$composeLifecycleRuntimeVersion"
     implementation "com.google.accompanist:accompanist-pager:$viewPagerGoogleExtensionVersion"
+    implementation("io.coil-kt:coil-compose:$coilComposeVersion")
     def composeBom = platform("androidx.compose:compose-bom:$composeDoomVersion")
     implementation composeBom
     androidTestImplementation composeBom

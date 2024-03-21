@@ -31,6 +31,7 @@ ext {
     composeDoomVersion = '2024.02.02'
     composeLifecycleRuntimeVersion = '2.7.0'
     viewPagerGoogleExtensionVersion = '0.22.0-rc'
+    coilComposeVersion = '2.4.0'
 
     // DI.
     hiltVersion = '2.50'

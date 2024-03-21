@@ -24,19 +24,19 @@ data class CustomTypography constructor(
         fontSize = 48.sp,
         letterSpacing = 1.sp
     ),
-    val bodyLarge: TextStyle = TextStyle(
-        fontFamily = ShackleFontFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 20.sp,
-        lineHeight = 22.sp,
-        letterSpacing = 0.5.sp
-    ),
     val bodyMedium: TextStyle = TextStyle(
         fontFamily = ShackleFontFamily,
         fontWeight = FontWeight.W100,
         fontSize = 14.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.5.sp
+    ),
+    val bodyBold: TextStyle = bodyMedium.copy(
+        fontWeight = FontWeight.W400
+    ),
+    val bodyLarge: TextStyle = bodyMedium.copy(
+        fontSize = 20.sp,
+        lineHeight = 22.sp,
     ),
     val button: TextStyle = TextStyle(
         fontFamily = ShackleFontFamily,

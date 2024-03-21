@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.shacklehotelbuddy.R
-import com.example.shacklehotelbuddy.features.search.ui.dialogs.InputNumberDialog
+import com.example.shacklehotelbuddy.base.navigation.NavigatorWays
 import com.example.shacklehotelbuddy.features.search.viewModels.SearchViewModel
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 
@@ -28,12 +28,6 @@ fun SearchScreen(
     navController: NavController? = null,
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
-    InputNumberDialog(
-        value = "Hello",
-        setShowDialog = {},
-        setValue = {}
-    )
-
     Scaffold { paddingValues ->
         Box(
             modifier = Modifier
@@ -46,7 +40,9 @@ fun SearchScreen(
         ) {
             Column(
                 verticalArrangement = Arrangement.SpaceBetween,
-                modifier = Modifier.padding(16.dp).fillMaxSize()
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxSize()
             ) {
                 Column(
                     verticalArrangement = Arrangement.SpaceAround,
@@ -65,7 +61,7 @@ fun SearchScreen(
                 }
 
                 SearchButton {
-
+                    navController?.navigate(NavigatorWays.HOTEL_LIST)
                 }
             }
         }
