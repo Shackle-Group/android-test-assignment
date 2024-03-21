@@ -1,18 +1,19 @@
 package com.example.shacklehotelbuddy.features.search.ui
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,31 +28,42 @@ fun SearchScreen(
     navController: NavController? = null,
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .paint(
-                painterResource(id = R.drawable.background),
-                contentScale = ContentScale.FillWidth
-            ),
-        contentAlignment = Alignment.Center
-    ) {
+    Scaffold { paddingValues ->
         Box(
             modifier = Modifier
-                .border(width = 2.dp, color = ShackleHotelBuddyTheme.colors.grayBorder)
-                .background(ShackleHotelBuddyTheme.colors.white)
-                .padding(16.dp)
+                .fillMaxSize()
+                .padding(top = paddingValues.calculateTopPadding())
+                .paint(
+                    painterResource(id = R.drawable.background),
+                    contentScale = ContentScale.FillWidth
+                ),
         ) {
-            Text(
-                text = "Search screen",
-                style = ShackleHotelBuddyTheme.typography.bodyMedium,
-                color = ShackleHotelBuddyTheme.colors.grayText,
+            Column(
+                verticalArrangement = Arrangement.SpaceBetween,
                 modifier = Modifier
-                    .clickable {
-                        searchViewModel.doIt()
-                        navController?.navigate(NavigatorWays.HOTEL_LIST)
-                    }
-            )
+                    .padding(16.dp)
+                    .fillMaxSize()
+            ) {
+                Column(
+                    verticalArrangement = Arrangement.SpaceAround,
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.search_title),
+                        style = ShackleHotelBuddyTheme.typography.titleBig,
+                        textAlign = TextAlign.Start,
+                        color = ShackleHotelBuddyTheme.colors.white,
+                        modifier = Modifier.padding(top = 142.dp, bottom = 30.dp)
+                    )
+
+                    BookingTable(searchViewModel = searchViewModel)
+
+                    RecentSearches(searchViewModel = searchViewModel)
+                }
+
+                SearchButton {
+                    navController?.navigate(NavigatorWays.HOTEL_LIST)
+                }
+            }
         }
     }
 }
