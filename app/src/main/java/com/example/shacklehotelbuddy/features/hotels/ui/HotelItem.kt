@@ -80,7 +80,7 @@ fun HotelItem(
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    text = hotel.reviews,
+                    text = hotel.rating,
                     style = ShackleHotelBuddyTheme.typography.bodyBold,
                     color = ShackleHotelBuddyTheme.colors.black
                 )

@@ -3,11 +3,24 @@ package com.example.shacklehotelbuddy.features.hotels.mvi
 import com.example.shacklehotelbuddy.base.mvi.IMviState
 import com.example.shacklehotelbuddy.features.hotels.models.Hotel
 
+/**
+ * Hotels state.
+ *
+ * @property isLoading Is loading
+ * @property hotels List of hotels
+ * @constructor Create [HotelsState]
+ */
 data class HotelsState(
-    val id: Int,
+    val isLoading: Boolean,
     val hotels: List<Hotel>
 ) : IMviState {
     companion object {
-        val default = HotelsState(id = 0, hotels = emptyList())
+        /**
+         * Default state.
+         */
+        val default = HotelsState(
+            isLoading = false,
+            hotels = emptyList()
+        )
     }
 }

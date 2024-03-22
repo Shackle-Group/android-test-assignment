@@ -16,6 +16,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -25,6 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.shacklehotelbuddy.R
+import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
 import com.example.shacklehotelbuddy.features.hotels.mvi.HotelsState
 import com.example.shacklehotelbuddy.features.hotels.viewModels.HotelsViewModel
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
@@ -36,6 +39,9 @@ fun HotelsScreen(
     hotelsViewModel: HotelsViewModel = hiltViewModel()
 ) {
     val uiState: HotelsState by hotelsViewModel.state.collectAsStateWithLifecycle()
+    LaunchedEffect(key1 = hotelsViewModel) {
+        hotelsViewModel.loadContent()
+    }
 
     Scaffold(
         topBar = {

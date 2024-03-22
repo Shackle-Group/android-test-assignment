@@ -17,7 +17,7 @@ data class HotelSearchRequest(
     @SerializedName("filters")                  val filters: FiltersRequest
 ) {
     companion object {
-        fun getInstance(
+        fun getStubInstance(
             checkInDate: CheckDateRequest,
             checkOutDate: CheckDateRequest,
             rooms: List<RoomRequest>,

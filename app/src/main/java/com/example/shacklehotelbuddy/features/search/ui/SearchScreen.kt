@@ -20,8 +20,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.base.navigation.NavigatorWays
+import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
 import com.example.shacklehotelbuddy.features.search.viewModels.SearchViewModel
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
+import java.util.Calendar
 
 @Composable
 fun SearchScreen(
@@ -61,7 +63,15 @@ fun SearchScreen(
                 }
 
                 SearchButton {
-                    navController?.navigate(NavigatorWays.HOTEL_LIST)
+                    val searchParameters = SearchParameters(
+                        checkInTimestamp = Calendar.getInstance().timeInMillis,
+                        checkOutTimestamp = Calendar.getInstance().apply {
+                            add(Calendar.DAY_OF_MONTH, 5)
+                        }.timeInMillis,
+                        adultCount = 1,
+                        childrenCount = 0
+                    )
+                    navController?.navigate("${NavigatorWays.HOTEL_LIST}/$searchParameters")
                 }
             }
         }

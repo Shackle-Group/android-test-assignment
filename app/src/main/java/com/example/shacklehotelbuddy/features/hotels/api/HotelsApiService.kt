@@ -11,7 +11,16 @@ import retrofit2.http.POST
 
 private const val LIST_API = "$BASE_API/properties/v2/list"
 
-interface SearchApiService : IApiService {
+/**
+ * Hotels API service.
+ */
+interface HotelsApiService : IApiService {
+    /**
+     * Get hotels.
+     *
+     * @param request [HotelSearchRequest]
+     * @return [Response]
+     */
     @POST(LIST_API)
     @Headers(
         "X-RapidAPI-Key: 4a45efc174mshea1e1cc5f6dd9b9p1bea7ajsn277943a06ca8",
