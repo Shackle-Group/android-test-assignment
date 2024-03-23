@@ -1,26 +1,30 @@
 package com.example.shacklehotelbuddy.features.search.useCases
 
-import com.example.shacklehotelbuddy.features.search.db.SearchDbRepository
-import com.example.shacklehotelbuddy.features.search.db.SearchEntity
-import java.util.Calendar
+import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
+import com.example.shacklehotelbuddy.features.search.db.ISearchParametersDbRepository
+import com.example.shacklehotelbuddy.features.search.db.SearchParametersDbRepository
 import javax.inject.Inject
 
-class SearchUseCase @Inject constructor(
-    private val searchRepository: SearchDbRepository
-) {
-    suspend fun getSearches() = searchRepository.getSearches()
+/**
+ * Search use case.
+ *
+ * @property searchRepository [SearchParametersDbRepository]
+ * @constructor Create [SearchUseCase]
+ */
+class SearchUseCase @Inject constructor(private val searchRepository: ISearchParametersDbRepository) {
+    /**
+     * Get last actual searches requests.
+     *
+     * @param count Count
+     * @return list of search parameters.
+     */
+    suspend fun getLastActualSearches(count: Int) = searchRepository.getLastSearchParameters(count)
 
-    suspend fun saveSearchParameters(
-        checkInDate: Calendar,
-        checkOutDate: Calendar,
-        adultCount: Int,
-        childrenCount: Int,
-    ) = searchRepository.insert(
-        searchEntity = SearchEntity(
-            checkInDate = checkInDate.timeInMillis,
-            checkOutDate = checkOutDate.timeInMillis,
-            adultCount = adultCount,
-            childrenCount = childrenCount
-        )
-    )
+    /**
+     * Save search parameters.
+     *
+     * @param searchParameters Search parameters
+     */
+    suspend fun saveSearchParameters(searchParameters: SearchParameters) =
+        searchRepository.insertOrUpdate(searchParameters)
 }

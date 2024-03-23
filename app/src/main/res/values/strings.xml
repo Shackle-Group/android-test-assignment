@@ -9,6 +9,11 @@
     <string name="search_recent_searches">Recent searches</string>
     <string name="search_recent_item_content">%1$d adult, %2$d children</string>
     <string name="search_search">Search</string>
+    <string name="search_dialog_select">Select</string>
+    <string name="search_dialog_cancel">Cancel</string>
+    <string name="search_dialog_title">Change count:</string>
 
-    <string name="search_date_picker_title">Search results</string>
+    <string name="hotels_title">Search results</string>
+    <string name="hotels_empty_list">No one hotel by your cafeterias</string>
+    <string name="hotels_night">%1$s night</string>
 </resources>

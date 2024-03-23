@@ -21,11 +21,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 
+/**
+ * Item of booking section.
+ *
+ * @param iconRes Icon res
+ * @param titleRes Title res
+ * @param value Value
+ * @param isLast Is last
+ * @param actionByClick Action by click
+ */
 @Composable
 fun BookingSearchItem(
     @DrawableRes iconRes: Int,
@@ -80,18 +87,5 @@ fun BookingSearchItem(
         if (!isLast) {
             HorizontalDivider()
         }
-    }
-}
-
-@Preview
-@Composable
-fun CheckDatePreview() {
-    ShackleHotelBuddyTheme {
-        BookingSearchItem(
-            iconRes = R.drawable.event_upcoming,
-            titleRes = R.string.search_check_in,
-            value = "DD / MM / YYYY",
-            isLast = false
-        ) {}
     }
 }

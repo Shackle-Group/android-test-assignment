@@ -24,6 +24,12 @@ data class CustomTypography constructor(
         fontSize = 48.sp,
         letterSpacing = 1.sp
     ),
+    val subTitle: TextStyle = TextStyle(
+        fontFamily = ShackleFontFamily,
+        fontWeight = FontWeight.W100,
+        fontSize = 18.sp,
+        letterSpacing = 1.sp
+    ),
     val bodyMedium: TextStyle = TextStyle(
         fontFamily = ShackleFontFamily,
         fontWeight = FontWeight.W100,
@@ -38,10 +44,17 @@ data class CustomTypography constructor(
         fontSize = 20.sp,
         lineHeight = 22.sp,
     ),
-    val button: TextStyle = TextStyle(
+    val buttonMain: TextStyle = TextStyle(
         fontFamily = ShackleFontFamily,
         fontWeight = FontWeight.W100,
         fontSize = 18.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 1.sp,
+    ),
+    val buttonNormal: TextStyle = TextStyle(
+        fontFamily = ShackleFontFamily,
+        fontWeight = FontWeight.W100,
+        fontSize = 16.sp,
         lineHeight = 20.sp,
         letterSpacing = 1.sp,
     ),

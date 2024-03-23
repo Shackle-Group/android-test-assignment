@@ -9,18 +9,35 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.shacklehotelbuddy.R
+import com.example.shacklehotelbuddy.features.search.mvi.SearchIntent
+import com.example.shacklehotelbuddy.features.search.mvi.SearchState
 import com.example.shacklehotelbuddy.features.search.viewModels.SearchViewModel
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
+import java.text.SimpleDateFormat
+import java.util.Locale
 
+/**
+ * Recent searches.
+ *
+ * @param searchViewModel Search view model
+ */
 @Composable
 fun RecentSearches(searchViewModel: SearchViewModel = hiltViewModel()) {
+    val uiState: SearchState by searchViewModel.state.collectAsStateWithLifecycle()
+    val dateFormat by remember {
+        mutableStateOf(SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()))
+    }
     Text(
         text = stringResource(id = R.string.search_recent_searches),
         style = ShackleHotelBuddyTheme.typography.bodyLarge,
@@ -37,12 +54,22 @@ fun RecentSearches(searchViewModel: SearchViewModel = hiltViewModel()) {
         colors = CardDefaults.cardColors(containerColor = ShackleHotelBuddyTheme.colors.white)
     ) {
         LazyColumn {
-            items(3) {
+            items(uiState.lastActualSearches.size) {
+                val item = uiState.lastActualSearches[it]
                 ResentSearchesItem(
-                    timeRange = "03/07/2024 - 15/07/2024",
-                    isLast = it == 2,
-                    actionByIcon = {},
-                    actionByDate = {},
+                    timeRange = "${dateFormat.format(item.checkInTimestamp)} - ${dateFormat.format(item.checkOutTimestamp)}",
+                    countsLine = stringResource(id = R.string.search_recent_item_content, item.adultCount, item.childrenCount),
+                    isLast = it == uiState.lastActualSearches.size - 1,
+                    actionByIcon = {
+                        searchViewModel.dispatchIntentAsync(
+                            SearchIntent.RemainSearchParameters(item)
+                        )
+                    },
+                    actionByDate = {
+                        searchViewModel.dispatchIntentAsync(
+                            SearchIntent.RepeatSearch(item)
+                        )
+                    },
                 )
             }
         }

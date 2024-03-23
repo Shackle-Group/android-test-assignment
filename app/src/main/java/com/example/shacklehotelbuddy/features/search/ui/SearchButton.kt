@@ -13,6 +13,11 @@ import androidx.compose.ui.unit.dp
 import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 
+/**
+ * Search button.
+ *
+ * @param searchAction Search action
+ */
 @Composable
 fun SearchButton(searchAction: () -> Unit) {
     Button(
@@ -25,7 +30,7 @@ fun SearchButton(searchAction: () -> Unit) {
     ) {
         Text(
             text = stringResource(id = R.string.search_search),
-            style = ShackleHotelBuddyTheme.typography.button,
+            style = ShackleHotelBuddyTheme.typography.buttonMain,
         )
     }
 }

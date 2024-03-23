@@ -1,7 +1,7 @@
 package com.example.shacklehotelbuddy.base.api
 
 import android.app.Application
-import com.example.shacklehotelbuddy.features.hotels.api.SearchApiService
+import com.example.shacklehotelbuddy.features.hotels.api.HotelsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,6 +41,6 @@ class RetrofitProviderModule {
 
     @Provides
     @Singleton
-    fun provideSearchApiService(retrofit: Retrofit): SearchApiService =
-        retrofit.create(SearchApiService::class.java)
+    fun provideSearchApiService(retrofit: Retrofit): HotelsApiService =
+        retrofit.create(HotelsApiService::class.java)
 }

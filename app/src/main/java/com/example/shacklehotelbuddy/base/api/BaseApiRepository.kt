@@ -8,48 +8,47 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
-const val HARDWARE_DISK_ERROR_CODE = 600
 const val UNKNOWN_ERROR_CODE = 601
 
-const val MESSAGE = "message"
-
+/**
+ * Base api repository for all REST-API repositories.
+ *
+ * @constructor Create empty constructor for base api repository
+ */
 abstract class BaseApiRepository {
-    protected suspend inline fun <reified T> safeApiCall(
-        crossinline apiToBeCalled: suspend () -> Response<T>
-    ): RequestResult<T> = withContext(Dispatchers.IO) {
-        try {
-            val response: Response<T> = apiToBeCalled()
+    /**
+     * Execute request and get result.
+     *
+     * @param T Response type
+     * @param R Data layer output type
+     * @param requestAction Request action
+     * @param mappingAction Mapping action
+     * @return [RequestResult]
+     */
+    protected suspend inline fun <reified T, reified R> executeRequestAndGetResult(
+        crossinline requestAction: suspend () -> Response<T>,
+        crossinline mappingAction: (data: T?) -> R
+    ): RequestResult<R> = try {
+        withContext(Dispatchers.IO) {
+            val response = requestAction.invoke()
             if (response.isSuccessful) {
-                RequestResult.Success(data = response.body()!!)
+                RequestResult.Success(mappingAction(response.body()))
             } else {
                 RequestResult.Failed(
-                    code = response.code(),
-                    errorMessage = response.getErrorMessage() ?: "Something went wrong"
+                    response.code(),
+                    response.errorBody()?.string() ?: "missing error message"
                 )
             }
-        } catch (e: HttpException) {
-            RequestResult.Failed(
-                code = e.code(),
-                errorMessage = e.message ?: "Please check your network connection"
-            )
-        } catch (e: IOException) {
-            RequestResult.Failed(
-                code = HARDWARE_DISK_ERROR_CODE,
-                errorMessage = e.message ?: "Something went wrong"
-            )
-        } catch (e: Exception) {
-            RequestResult.Failed(
-                code = UNKNOWN_ERROR_CODE,
-                errorMessage = e.message ?: "Something went wrong"
-            )
         }
-    }
-
-    protected inline fun <reified T> Response<T>.getErrorMessage(): String? = try {
-        val json = JSONObject(errorBody()?.string())
-        val errorMessage = json[MESSAGE] as String
-        errorMessage
+    }  catch (e: HttpException) {
+        RequestResult.Failed(
+            code = e.code(),
+            errorMessage = e.message ?: "Please check your network connection"
+        )
     } catch (e: Exception) {
-        null
+        RequestResult.Failed(
+            code = UNKNOWN_ERROR_CODE,
+            errorMessage = e.message ?: "Something went wrong"
+        )
     }
 }

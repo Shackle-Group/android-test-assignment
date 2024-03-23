@@ -19,6 +19,13 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        //room database schema
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/dbschemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -90,6 +97,10 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // Others.
+    implementation("com.valentinilk.shimmer:compose-shimmer:$shimmerAnimationLib")
 
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"

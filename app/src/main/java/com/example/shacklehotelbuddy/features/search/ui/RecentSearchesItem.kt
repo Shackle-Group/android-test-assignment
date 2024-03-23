@@ -28,9 +28,19 @@ import androidx.compose.ui.unit.dp
 import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 
+/**
+ * Resent searches item.
+ *
+ * @param timeRange Time range
+ * @param countsLine Counts line
+ * @param isLast Is last
+ * @param actionByIcon Action by icon
+ * @param actionByDate Action by date
+ */
 @Composable
 fun ResentSearchesItem(
     timeRange: String,
+    countsLine: String,
     isLast: Boolean = false,
     actionByIcon: () -> Unit,
     actionByDate: () -> Unit
@@ -79,7 +89,7 @@ fun ResentSearchesItem(
                         color = ShackleHotelBuddyTheme.colors.grayText,
                     )
                     Text(
-                        text = stringResource(id = R.string.search_recent_item_content, 1, 0),
+                        text = countsLine,
                         style = ShackleHotelBuddyTheme.typography.bodyMedium,
                         color = ShackleHotelBuddyTheme.colors.grayText,
                         modifier = Modifier.padding(end = 16.dp)
@@ -90,49 +100,5 @@ fun ResentSearchesItem(
         if (!isLast) {
             HorizontalDivider()
         }
-    }
-}
-
-@Composable
-fun NumberPicker(
-    range: IntRange = 1..60,
-    onValueChange: (Int) -> Unit
-) {
-    // Mutable state to keep track of the current value
-    var sliderPosition by remember { mutableFloatStateOf(range.first.toFloat()) }
-
-    Column(
-        modifier = Modifier.padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Integer value of the slider's position
-        val intValue = sliderPosition.toInt()
-
-        // Text display of the current number
-        Text("Selected number: $intValue")
-
-        // Slider composable
-        Slider(
-            value = sliderPosition,
-            onValueChange = { newValue ->
-                sliderPosition = newValue
-                onValueChange(newValue.toInt())
-            },
-            valueRange = range.first.toFloat()..range.last.toFloat(),
-            steps = range.last - range.first - 1
-        )
-    }
-}
-
-@Preview
-@Composable
-fun ResentSearchesItemPreview() {
-    ShackleHotelBuddyTheme {
-        ResentSearchesItem(
-            timeRange = "03 / 07 / 2024 - 15 / 07 / 2024",
-            isLast = false,
-            actionByIcon = {},
-            actionByDate = {},
-        )
     }
 }
