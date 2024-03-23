@@ -18,27 +18,12 @@ class SearchUseCase @Inject constructor(private val searchRepository: ISearchPar
      * @param count Count
      * @return list of search parameters.
      */
-    suspend fun getLastActualSearches(count: Int) = searchRepository.getLastActualSearches(count)
+    suspend fun getLastActualSearches(count: Int) = searchRepository.getLastSearchParameters(count)
 
     /**
      * Save search parameters.
      *
-     * @param checkInTimestamp Check in timestamp
-     * @param checkOutTimestamp Check out timestamp
-     * @param adultCount Adult count
-     * @param childrenCount Children count
+     * @param searchParameters Search parameters
      */
-    suspend fun saveSearchParameters(
-        checkInTimestamp: Long,
-        checkOutTimestamp: Long,
-        adultCount: Int,
-        childrenCount: Int,
-    ) = searchRepository.insert(
-        searchParameters = SearchParameters(
-            checkInTimestamp = checkInTimestamp,
-            checkOutTimestamp = checkOutTimestamp,
-            adultCount = adultCount,
-            childrenCount = childrenCount
-        )
-    )
+    suspend fun saveSearchParameters(searchParameters: SearchParameters) = searchRepository.insert(searchParameters)
 }

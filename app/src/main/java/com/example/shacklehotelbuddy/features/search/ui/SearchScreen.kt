@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.layout.ContentScale
@@ -17,12 +18,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.base.navigation.NavigatorWays
 import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
+import com.example.shacklehotelbuddy.features.search.mvi.SearchAction
+import com.example.shacklehotelbuddy.features.search.mvi.SearchIntent
+import com.example.shacklehotelbuddy.features.search.mvi.SearchState
 import com.example.shacklehotelbuddy.features.search.viewModels.SearchViewModel
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
+import com.example.shacklehotelbuddy.utils.InitDisposableSubscriptionEffect
 import java.util.Calendar
 
 @Composable
@@ -30,6 +36,15 @@ fun SearchScreen(
     navController: NavController? = null,
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
+    val uiState: SearchState by searchViewModel.state.collectAsStateWithLifecycle()
+    searchViewModel.InitDisposableSubscriptionEffect(
+        onStartCallback = { searchViewModel.dispatchIntentAsync(SearchIntent.LoadDefaultContent) },
+        mviSingleActionCallback = { singleAction ->
+            when (singleAction) {
+                SearchAction.ShowHotels -> navController?.navigate(NavigatorWays.HOTEL_LIST)
+            }
+        }
+    )
     Scaffold { paddingValues ->
         Box(
             modifier = Modifier
@@ -63,15 +78,7 @@ fun SearchScreen(
                 }
 
                 SearchButton {
-                    val searchParameters = SearchParameters(
-                        checkInTimestamp = Calendar.getInstance().timeInMillis,
-                        checkOutTimestamp = Calendar.getInstance().apply {
-                            add(Calendar.DAY_OF_MONTH, 5)
-                        }.timeInMillis,
-                        adultCount = 1,
-                        childrenCount = 0
-                    )
-                    navController?.navigate("${NavigatorWays.HOTEL_LIST}/$searchParameters")
+                    searchViewModel.dispatchIntentAsync(SearchIntent.MakeSearch)
                 }
             }
         }

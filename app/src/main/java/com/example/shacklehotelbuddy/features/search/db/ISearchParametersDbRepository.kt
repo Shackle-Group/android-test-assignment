@@ -4,7 +4,7 @@ import com.example.shacklehotelbuddy.base.db.IDbRepository
 import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
 
 /**
- * Search db repository.
+ * Promises to provide the methods for storing request parameters.
  */
 interface ISearchParametersDbRepository : IDbRepository {
     /**
@@ -13,7 +13,7 @@ interface ISearchParametersDbRepository : IDbRepository {
      * @param count Count
      * @return list of search parameters.
      */
-    suspend fun getLastActualSearches(count: Int): List<SearchParameters>
+    suspend fun getLastSearchParameters(count: Int): List<SearchParameters>
 
     /**
      * Insert search parameters.

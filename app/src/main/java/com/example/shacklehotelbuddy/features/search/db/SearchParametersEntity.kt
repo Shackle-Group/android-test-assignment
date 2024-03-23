@@ -23,7 +23,7 @@ internal const val CHILDREN_COUNT = "children_count"
  * @constructor Create [SearchParametersEntity]
  */
 @Entity(tableName = SEARCH_PARAMETERS)
-class SearchParametersEntity(
+data class SearchParametersEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = ID)                      val id: Long = 0,
     @ColumnInfo(name = CHECK_IN_TIMESTAMP)      val checkInTimestamp: Long,

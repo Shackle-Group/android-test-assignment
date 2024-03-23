@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * Search parameters database repository.
  *
  * @property searchParametersDao [SearchParametersDao]
- * @property databaseDispatcher [CoroutineDispatcher]
+ * @property databaseDispatcher Single thread [CoroutineDispatcher] for database operations
  * @constructor Create [SearchParametersDbRepository]
  */
 @Singleton
@@ -20,7 +20,7 @@ class SearchParametersDbRepository @Inject constructor(
     private val searchParametersDao: SearchParametersDao,
     @Named(DATABASE_DISPATCHER) private val databaseDispatcher: CoroutineDispatcher
 ) : ISearchParametersDbRepository {
-    override suspend fun getLastActualSearches(count: Int): List<SearchParameters> =
+    override suspend fun getLastSearchParameters(count: Int): List<SearchParameters> =
         withContext(databaseDispatcher) {
             searchParametersDao.getLastActualSearches(count).map {
                 it.convertToSearchParameters()

@@ -17,15 +17,6 @@ import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 
 @Composable
 fun BookingTable(searchViewModel: SearchViewModel = hiltViewModel()) {
-//    DatePickerDialoga(
-//        onDateSelected = {
-////                    searchViewModel.dispatchIntentAsync(SearchIntent.CheckInDateSelected(it))
-//        },
-//        onDismiss = {
-////                    searchViewModel.dispatchIntentAsync(SearchIntent.DatePickerDismissed)
-//        }
-//    )
-
     Card(
         modifier = Modifier
             .clip(shape = RoundedCornerShape(16.dp))
@@ -38,22 +29,29 @@ fun BookingTable(searchViewModel: SearchViewModel = hiltViewModel()) {
             titleRes = R.string.search_check_in,
             value = "DD / MM / YYYY"
         ) {
-
-//            searchViewModel.dispatchIntentAsync(SearchIntent.CheckInDateClicked)
+            searchViewModel.dispatchIntentAsync(
+                SearchIntent.UpdateCheckInDate(
+                    timestamp = System.currentTimeMillis()
+                )
+            )
         }
         BookingSearchItem(
             iconRes = R.drawable.event_available,
             titleRes = R.string.search_check_out,
             value = "DD / MM / YYYY"
         ) {
-            searchViewModel.dispatchIntentAsync(SearchIntent.CheckOutDateClicked)
+            searchViewModel.dispatchIntentAsync(
+                SearchIntent.UpdateCheckOutDate(
+                    timestamp = System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000
+                )
+            )
         }
         BookingSearchItem(
             iconRes = R.drawable.person,
             titleRes = R.string.search_adult_counter,
             value = "1"
         ) {
-            searchViewModel.dispatchIntentAsync(SearchIntent.CheckInDateClicked)
+            searchViewModel.dispatchIntentAsync(SearchIntent.UpdateAdults(count = 2))
         }
         BookingSearchItem(
             iconRes = R.drawable.supervisor_account,
@@ -61,7 +59,7 @@ fun BookingTable(searchViewModel: SearchViewModel = hiltViewModel()) {
             value = "0",
             isLast = true
         ) {
-            searchViewModel.dispatchIntentAsync(SearchIntent.CheckInDateClicked)
+            searchViewModel.dispatchIntentAsync(SearchIntent.UpdateChildren(count = 1))
         }
     }
 }

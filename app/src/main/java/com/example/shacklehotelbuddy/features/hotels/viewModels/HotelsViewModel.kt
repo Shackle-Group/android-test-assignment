@@ -22,10 +22,9 @@ class HotelsViewModel @Inject constructor(
     HotelsState.default
 ) {
 
-    fun loadContent(searchParameters: SearchParameters? = null) = viewModelScope.launch {
-        searchParameters ?: return@launch
+    fun loadContent() = viewModelScope.launch {
         withContext(Dispatchers.Default) {
-            hotelsUseCase.getHotels(searchParameters).processRequestResult(
+            hotelsUseCase.getHotelsByLastRequest().processRequestResult(
                 action = { hotels ->
                     state.value.copy(isLoading = false, hotels = hotels).emitState()
                 },
