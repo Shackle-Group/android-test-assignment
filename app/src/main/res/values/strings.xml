@@ -13,5 +13,7 @@
     <string name="search_dialog_cancel">Cancel</string>
     <string name="search_dialog_title">Change count:</string>
 
-    <string name="search_date_picker_title">Search results</string>
+    <string name="hotels_title">Search results</string>
+    <string name="hotels_empty_list">No one hotel by your cafeterias</string>
+    <string name="hotels_night">%1$s night</string>
 </resources>

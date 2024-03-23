@@ -7,6 +7,14 @@ import com.example.shacklehotelbuddy.base.mvi.IMviAction
  */
 sealed class HotelsAction : IMviAction {
     /**
+     * Open hotel details.
+     *
+     * @property hotelId Hotel ID
+     * @constructor Create [OpenHotelDetails]
+     */
+    data class OpenHotelDetails(val hotelId: String) : HotelsAction()
+
+    /**
      * Show error.
      *
      * @property code Code

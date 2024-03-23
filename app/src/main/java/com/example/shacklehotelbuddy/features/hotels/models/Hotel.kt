@@ -18,4 +18,18 @@ data class Hotel(
     val price: String?,
     val location: String,
     val rating: String
-)
+) {
+    companion object {
+        /**
+         * Default stub of hotel.
+         */
+        val default = Hotel(
+            id = "",
+            name = "",
+            url = "",
+            price = "",
+            location = "",
+            rating = ""
+        )
+    }
+}

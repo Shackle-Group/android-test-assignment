@@ -42,6 +42,9 @@ ext {
     // Room.
     roomVersion = "2.6.1"
 
+    // Others.
+    shimmerAnimationLib = "1.2.0"
+
     // Tests.
     junitVersion = "4.13.2"
     junitExtVersion = "1.1.5"

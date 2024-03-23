@@ -1,7 +1,5 @@
-package com.example.shacklehotelbuddy.features.hotels.di
+package com.example.shacklehotelbuddy.features.search.di
 
-import com.example.shacklehotelbuddy.features.hotels.api.HotelsApiRepository
-import com.example.shacklehotelbuddy.features.hotels.api.IHotelsApiRepository
 import com.example.shacklehotelbuddy.features.search.db.ISearchParametersDbRepository
 import com.example.shacklehotelbuddy.features.search.db.SearchParametersDbRepository
 import dagger.Binds
@@ -11,7 +9,8 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-abstract class HotelsModule {
+abstract class SearchModule {
     @Binds
-    abstract fun bindHotelsApiRepository(hotelsApiRepository: HotelsApiRepository): IHotelsApiRepository
+    abstract fun bindSearchParametersDbRepository(
+        hotelsApiRepository: SearchParametersDbRepository): ISearchParametersDbRepository
 }

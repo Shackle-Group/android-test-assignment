@@ -2,6 +2,7 @@ package com.example.shacklehotelbuddy.base.mvi
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.shacklehotelbuddy.base.api.models.RequestResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -58,4 +59,23 @@ abstract class MviViewModel<I : IMviIntent, S : IMviState, A : IMviAction>(
      * @receiver [IMviAction]
      */
     protected suspend fun A.emitAction() = action.emit(this@emitAction)
+
+    /**
+     * Process request result.
+     *
+     * @receiver [RequestResult]
+     * @param T Type of response
+     * @param R Mapped type
+     * @param successAction Success action
+     * @param failAction Fail action
+     */
+    protected suspend fun <T, R> RequestResult<T>.processRequestResult(
+        successAction: (suspend (data: T) -> R),
+        failAction: (suspend (code: Int, message: String) -> Unit)
+    ) {
+        when (this) {
+            is RequestResult.Success -> successAction.invoke(data!!)
+            is RequestResult.Failed -> failAction(code, errorMessage)
+        }
+    }
 }
