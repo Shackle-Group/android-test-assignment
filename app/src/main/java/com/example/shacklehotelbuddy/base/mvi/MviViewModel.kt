@@ -13,7 +13,10 @@ import kotlinx.coroutines.withContext
  *
  * @param I Type of intents
  * @param S Type of states
- * @constructor Create empty constructor for mvi view model
+ * @param A Type of single actions
+ * @constructor Create [MviViewModel]
+ *
+ * @param defaultState Default state
  */
 abstract class MviViewModel<I : IMviIntent, S : IMviState, A : IMviAction>(
     defaultState: S

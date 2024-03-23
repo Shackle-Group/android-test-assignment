@@ -8,6 +8,9 @@ import com.example.shacklehotelbuddy.base.navigation.NavigatorWays
 import com.example.shacklehotelbuddy.features.hotels.ui.HotelsScreen
 import com.example.shacklehotelbuddy.features.search.ui.SearchScreen
 
+/**
+ * Init navigation host and show default screen.
+ */
 @Composable
 fun InitNavHostAndShowDefault() {
     val navController = rememberNavController()
