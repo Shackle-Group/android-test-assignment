@@ -5,11 +5,11 @@ import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
 import com.example.shacklehotelbuddy.features.search.mvi.SearchAction
 import com.example.shacklehotelbuddy.features.search.mvi.SearchIntent
 import com.example.shacklehotelbuddy.features.search.mvi.SearchState
-import com.example.shacklehotelbuddy.features.search.useCases.SearchUseCase
 import com.example.shacklehotelbuddy.features.search.useCases.CheckDateUseCase
+import com.example.shacklehotelbuddy.features.search.useCases.SearchUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import java.util.Calendar
+import javax.inject.Inject
 
 private const val ADULTS_BY_DEFAULT = 1
 private const val CHILDREN_BY_DEFAULT = 0
@@ -44,11 +44,12 @@ class SearchViewModel @Inject constructor(
      * Show default content.
      */
     private suspend fun showDefaultContent() {
+        val lastRequest = searchUseCase.getLastActualSearches(count = 1).firstOrNull()
         state.value.copy(
-            checkInTimestamp = checkDateUseCase.getDefaultCheckInDate(),
-            checkOutTimestamp = checkDateUseCase.getDefaultCheckOutDate(),
-            adultCount = ADULTS_BY_DEFAULT,
-            childrenCount = CHILDREN_BY_DEFAULT,
+            checkInTimestamp = lastRequest?.checkInTimestamp ?: checkDateUseCase.getDefaultCheckInDate(),
+            checkOutTimestamp = lastRequest?.checkOutTimestamp ?: checkDateUseCase.getDefaultCheckOutDate(),
+            adultCount = lastRequest?.adultCount ?: ADULTS_BY_DEFAULT,
+            childrenCount = lastRequest?.childrenCount ?: CHILDREN_BY_DEFAULT,
             lastActualSearches = searchUseCase.getLastActualSearches(count = CONT_OF_LAST_ACTUAL_SEARCHES)
         ).emitState()
     }
@@ -63,7 +64,6 @@ class SearchViewModel @Inject constructor(
         state.value.copy(
             checkInTimestamp = checkInTimestamp,
             checkOutTimestamp = newCheckOutDate,
-            isBtnActive = newCheckOutDate != null
         ).emitState()
     }
 
@@ -133,7 +133,7 @@ class SearchViewModel @Inject constructor(
         searchUseCase.saveSearchParameters(
             SearchParameters(
                 checkInTimestamp = checkInTimestamp,
-                checkOutTimestamp = checkOutTimestamp ?: 0,
+                checkOutTimestamp = checkOutTimestamp,
                 adultCount = adultCount,
                 childrenCount = childrenCount
             )

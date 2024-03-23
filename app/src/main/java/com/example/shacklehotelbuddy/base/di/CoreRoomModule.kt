@@ -33,12 +33,12 @@ class CoreRoomModule {
     @Singleton
     fun provideRoomDatabase(
         application: Application,
-        roomMigrations: Set<@JvmSuppressWildcards Migration> // We don't have migration here, but it can be added later.
+//        roomMigrations: Set<@JvmSuppressWildcards Migration> // We don't have migration here, but it can be added later.
     ) = Room.databaseBuilder(
         application,
         AppRoomDatabase::class.java,
         DATABASE_NAME
-    ).addMigrations(*roomMigrations.toTypedArray())
+    )//.addMigrations(*roomMigrations.toTypedArray())
         .fallbackToDestructiveMigrationOnDowngrade()
         .build()
 

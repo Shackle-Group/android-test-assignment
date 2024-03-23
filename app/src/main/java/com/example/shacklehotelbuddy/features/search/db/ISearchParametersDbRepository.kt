@@ -16,9 +16,9 @@ interface ISearchParametersDbRepository : IDbRepository {
     suspend fun getLastSearchParameters(count: Int): List<SearchParameters>
 
     /**
-     * Insert search parameters.
+     * Insert or update search parameters.
      *
      * @param searchParameters [SearchParameters]
      */
-    suspend fun insert(searchParameters: SearchParameters)
+    suspend fun insertOrUpdate(searchParameters: SearchParameters)
 }

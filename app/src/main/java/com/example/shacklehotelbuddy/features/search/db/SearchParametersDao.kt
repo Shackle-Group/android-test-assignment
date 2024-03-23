@@ -26,4 +26,24 @@ interface SearchParametersDao {
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(searchParametersEntity: SearchParametersEntity)
+
+    /**
+     * Delete.
+     *
+     * @param checkInTimestamp Check in timestamp
+     * @param checkOutTimestamp Check out timestamp
+     * @param adultCount Adult count
+     * @param childrenCount Children count
+     */
+    @Query("DELETE FROM $SEARCH_PARAMETERS WHERE " +
+            "$CHECK_IN_TIMESTAMP = :checkInTimestamp AND " +
+            "$CHECK_OUT_DATE = :checkOutTimestamp AND " +
+            "$ADULT_COUNT = :adultCount AND " +
+            "$CHILDREN_COUNT = :childrenCount")
+    fun delete(
+        checkInTimestamp: Long,
+        checkOutTimestamp: Long,
+        adultCount: Int,
+        childrenCount: Int
+    )
 }

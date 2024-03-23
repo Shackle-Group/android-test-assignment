@@ -22,21 +22,26 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import com.example.shacklehotelbuddy.R
 import com.example.shacklehotelbuddy.base.navigation.NavigatorWays
-import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
 import com.example.shacklehotelbuddy.features.search.mvi.SearchAction
 import com.example.shacklehotelbuddy.features.search.mvi.SearchIntent
 import com.example.shacklehotelbuddy.features.search.mvi.SearchState
 import com.example.shacklehotelbuddy.features.search.viewModels.SearchViewModel
 import com.example.shacklehotelbuddy.ui.theme.ShackleHotelBuddyTheme
 import com.example.shacklehotelbuddy.utils.InitDisposableSubscriptionEffect
-import java.util.Calendar
 
+/**
+ * Search screen.
+ *
+ * @param navController Nav controller
+ * @param searchViewModel Search view model
+ */
 @Composable
 fun SearchScreen(
     navController: NavController? = null,
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
     val uiState: SearchState by searchViewModel.state.collectAsStateWithLifecycle()
+
     searchViewModel.InitDisposableSubscriptionEffect(
         onStartCallback = { searchViewModel.dispatchIntentAsync(SearchIntent.LoadDefaultContent) },
         mviSingleActionCallback = { singleAction ->
@@ -74,7 +79,9 @@ fun SearchScreen(
 
                     BookingTable(searchViewModel = searchViewModel)
 
-                    RecentSearches(searchViewModel = searchViewModel)
+                    if (uiState.lastActualSearches.isNotEmpty()) {
+                        RecentSearches(searchViewModel = searchViewModel)
+                    }
                 }
 
                 SearchButton {
@@ -82,13 +89,5 @@ fun SearchScreen(
                 }
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ShackleHotelBuddyTheme {
-        SearchScreen()
     }
 }

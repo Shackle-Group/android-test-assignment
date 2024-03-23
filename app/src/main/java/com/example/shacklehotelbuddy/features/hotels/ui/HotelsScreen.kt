@@ -82,11 +82,3 @@ fun HotelsScreen(
         }
     }
 }
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ShackleHotelBuddyTheme {
-        HotelsScreen()
-    }
-}

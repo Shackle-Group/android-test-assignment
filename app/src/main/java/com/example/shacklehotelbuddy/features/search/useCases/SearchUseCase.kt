@@ -25,5 +25,6 @@ class SearchUseCase @Inject constructor(private val searchRepository: ISearchPar
      *
      * @param searchParameters Search parameters
      */
-    suspend fun saveSearchParameters(searchParameters: SearchParameters) = searchRepository.insert(searchParameters)
+    suspend fun saveSearchParameters(searchParameters: SearchParameters) =
+        searchRepository.insertOrUpdate(searchParameters)
 }

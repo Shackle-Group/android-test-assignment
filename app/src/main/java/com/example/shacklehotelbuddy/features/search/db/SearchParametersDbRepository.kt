@@ -27,7 +27,14 @@ class SearchParametersDbRepository @Inject constructor(
             }
         }
 
-    override suspend fun insert(searchParameters: SearchParameters) = withContext(databaseDispatcher) {
+    override suspend fun insertOrUpdate(searchParameters: SearchParameters) = withContext(databaseDispatcher) {
+        // Don't need to be transaction, because we use single-thread-coroutine-databaseDispatcher.
+        searchParametersDao.delete(
+            searchParameters.checkInTimestamp,
+            searchParameters.checkOutTimestamp,
+            searchParameters.adultCount,
+            searchParameters.childrenCount
+        )
         searchParametersDao.insert(searchParameters.convertToSearchParametersEntity())
     }
 

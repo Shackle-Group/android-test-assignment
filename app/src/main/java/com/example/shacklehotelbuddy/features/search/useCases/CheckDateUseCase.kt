@@ -3,6 +3,8 @@ package com.example.shacklehotelbuddy.features.search.useCases
 import java.util.Calendar
 import javax.inject.Inject
 
+private const val THREE_DAYS = 3 * 24 * 60 * 60 * 1000
+
 /**
  * Factory method to work with [Calendar].
  *
@@ -34,9 +36,9 @@ class CheckDateUseCase @Inject constructor() {
      * @param currentCheckOutDate Current check out date
      * @return A new check out date
      */
-    fun getNewCheckOutDate(checkInDate: Long, currentCheckOutDate: Long?): Long? =
+    fun getNewCheckOutDate(checkInDate: Long, currentCheckOutDate: Long?): Long =
         if (currentCheckOutDate == null || checkInDate > currentCheckOutDate) {
-            null
+            checkInDate + THREE_DAYS
         } else {
             currentCheckOutDate
         }

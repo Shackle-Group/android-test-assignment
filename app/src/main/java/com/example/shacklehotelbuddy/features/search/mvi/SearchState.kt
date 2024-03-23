@@ -11,16 +11,14 @@ import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
  * @property adultCount Number of adults
  * @property childrenCount Number of children
  * @property lastActualSearches Last actual searches
- * @property isBtnActive Is search btn active
  * @constructor Create [SearchState]
  */
 data class SearchState(
     val checkInTimestamp: Long,
-    val checkOutTimestamp: Long?,
+    val checkOutTimestamp: Long,
     val adultCount: Int,
     val childrenCount: Int,
-    val lastActualSearches: List<SearchParameters> = emptyList(),
-    val isBtnActive: Boolean
+    val lastActualSearches: List<SearchParameters>
 ) : IMviState {
     companion object {
         val default = SearchState(
@@ -28,8 +26,7 @@ data class SearchState(
             checkOutTimestamp = 0,
             adultCount = 0,
             childrenCount = 0,
-            lastActualSearches = emptyList(),
-            isBtnActive = false
+            lastActualSearches = emptyList()
         )
     }
 }
