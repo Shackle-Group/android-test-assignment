@@ -45,7 +45,7 @@ class HotelsUseCaseTest {
         coEvery { searchParametersDbRepository.getLastSearchParameters(1) } returns listOf()
 
         assertEquals(
-            RequestResult.Failed(code = 0, errorMessage = "No search parameters found"),
+            RequestResult.Failed<List<Hotel>>(code = 0, errorMessage = "No search parameters found"),
             hotelsUseCase.getHotelsByLastRequest()
         )
 

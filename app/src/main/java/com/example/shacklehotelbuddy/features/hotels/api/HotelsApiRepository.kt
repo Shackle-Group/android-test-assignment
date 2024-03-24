@@ -23,7 +23,7 @@ import javax.inject.Singleton
 class HotelsApiRepository @Inject constructor(
     private val hotelsApiService: HotelsApiService
 ) : BaseApiRepository(), IHotelsApiRepository {
-    override suspend fun getHotels(searchParameters: SearchParameters): RequestResult =
+    override suspend fun getHotels(searchParameters: SearchParameters): RequestResult<List<Hotel>> =
         executeRequestAndGetResult(
             requestAction = { hotelsApiService.getHotels(getHotelSearchRequest(searchParameters = searchParameters)) },
             mappingAction = { it?.convertToHotels() ?: emptyList() }

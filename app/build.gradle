@@ -40,6 +40,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+        // Hide warnings.
+        freeCompilerArgs += [
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview"
+        ]
     }
     buildFeatures {
         compose true

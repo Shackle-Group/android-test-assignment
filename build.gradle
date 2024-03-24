@@ -53,7 +53,7 @@ ext {
     truthVersion = '1.4.0'
     mockkVersion = '1.13.5' // 1.13.5 - for viewModel tests. Lib is not ready for JDK 17.
     mockitoVersion = '5.10.0'
-    mockWebServerVersion = '5.0.0-alpha.12'
+    mockWebServerVersion = '5.0.0-alpha.4'
     testCoreVersion = '1.5.0'
     coreTestingVersion = '2.2.0'
     testJsonVersion = '20231013'

@@ -69,7 +69,7 @@ abstract class MviViewModel<I : IMviIntent, S : IMviState, A : IMviAction>(
      * @param successAction Success action
      * @param failAction Fail action
      */
-    protected inline fun <reified T> RequestResult.processRequestResult(
+    protected inline fun <reified T> RequestResult<T>.processRequestResult(
         successAction: ((data: T) -> Unit),
         failAction: ((code: Int, message: String) -> Unit)
     ) {

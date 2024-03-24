@@ -1,6 +1,5 @@
 package com.example.shacklehotelbuddy.features.hotels.api
 
-import com.example.shacklehotelbuddy.base.api.BASE_API
 import com.example.shacklehotelbuddy.base.api.IApiService
 import com.example.shacklehotelbuddy.features.hotels.api.request.HotelSearchRequest
 import com.example.shacklehotelbuddy.features.hotels.api.responses.HotelSearchResponse
@@ -9,7 +8,7 @@ import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
-private const val LIST_API = "$BASE_API/properties/v2/list"
+private const val LIST_API = "properties/v2/list"
 
 /**
  * Hotels API service.

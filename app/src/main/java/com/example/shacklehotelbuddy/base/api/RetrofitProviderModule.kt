@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-const val BASE_API = "https://hotels4.p.rapidapi.com"
+const val BASE_API = "https://hotels4.p.rapidapi.com/"
 private const val TIME_OUT_IN_SECONDS = 30
 private const val CACHE_SIZE = 32 * 1024 * 1024L // 32 MB.
 

@@ -14,5 +14,5 @@ interface IHotelsApiRepository {
      * @param searchParameters Search parameters
      * @return [RequestResult] with list of [Hotel]
      */
-    suspend fun getHotels(searchParameters: SearchParameters): RequestResult
+    suspend fun getHotels(searchParameters: SearchParameters): RequestResult<List<Hotel>>
 }
