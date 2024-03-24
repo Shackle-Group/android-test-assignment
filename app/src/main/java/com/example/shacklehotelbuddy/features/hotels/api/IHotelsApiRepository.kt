@@ -1,10 +1,8 @@
 package com.example.shacklehotelbuddy.features.hotels.api
 
 import com.example.shacklehotelbuddy.base.api.models.RequestResult
-import com.example.shacklehotelbuddy.features.hotels.api.responses.HotelSearchResponse
 import com.example.shacklehotelbuddy.features.hotels.models.Hotel
 import com.example.shacklehotelbuddy.features.hotels.models.SearchParameters
-import java.util.Calendar
 
 /**
  * Promises to provide hotels.

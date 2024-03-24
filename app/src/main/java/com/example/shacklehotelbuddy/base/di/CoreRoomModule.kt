@@ -3,7 +3,6 @@ package com.example.shacklehotelbuddy.base.di
 import android.app.Application
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
 import com.example.shacklehotelbuddy.base.db.AppRoomDatabase
 import dagger.Module
 import dagger.Provides

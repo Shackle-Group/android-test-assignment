@@ -40,6 +40,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
+        // Hide warnings.
+        freeCompilerArgs += [
+                "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi",
+                "-opt-in=kotlinx.coroutines.FlowPreview"
+        ]
     }
     buildFeatures {
         compose true
@@ -49,9 +55,10 @@ android {
     }
     packagingOptions {
         resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            excludes += '/META-INF/*'
         }
     }
+    testOptions { packagingOptions { jniLibs { useLegacyPackaging = true } } }
 }
 
 dependencies {
@@ -102,12 +109,30 @@ dependencies {
     // Others.
     implementation("com.valentinilk.shimmer:compose-shimmer:$shimmerAnimationLib")
 
+    // *************** JUnit tests libs *******************
     testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.ext:junit:$junitExtVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
+    testImplementation "io.mockk:mockk:$mockkVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
+    testImplementation "androidx.test:core:$testCoreVersion"
+    testImplementation "androidx.room:room-testing:$roomVersion"
+    // For retrofit api testing.
+    testImplementation "com.squareup.okhttp3:mockwebserver:$mockWebServerVersion"
+    testImplementation "org.json:json:$testJsonVersion"
+
+    // *************** Android JUnit tests *******************
+    androidTestImplementation "androidx.arch.core:core-testing:$coreTestingVersion"
+    androidTestImplementation "androidx.test:rules:$rulesVersion"
+    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    androidTestImplementation "io.mockk:mockk-android:$mockkVersion"
+    androidTestImplementation "androidx.work:work-testing:$workRuntimeKtxVersion"
+
     androidTestImplementation platform("androidx.compose:compose-bom:$composeDoomVersion")
     androidTestImplementation "androidx.compose.ui:ui-test-junit4"
     debugImplementation "androidx.compose.ui:ui-tooling"
     debugImplementation "androidx.compose.ui:ui-test-manifest"
-    testImplementation("androidx.room:room-testing:$roomVersion")
 }

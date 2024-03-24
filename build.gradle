@@ -46,7 +46,18 @@ ext {
     shimmerAnimationLib = "1.2.0"
 
     // Tests.
-    junitVersion = "4.13.2"
+    junitVersion = '4.13.2'
+    androidJunitVersion = '1.1.5'
+    testRunnerVersion = '1.5.2'
+    espressoCoreVersion = '3.5.1'
+    truthVersion = '1.4.0'
+    mockkVersion = '1.13.5' // 1.13.5 - for viewModel tests. Lib is not ready for JDK 17.
+    mockitoVersion = '5.10.0'
+    mockWebServerVersion = '5.0.0-alpha.4'
+    testCoreVersion = '1.5.0'
+    coreTestingVersion = '2.2.0'
+    testJsonVersion = '20231013'
+    rulesVersion = '1.5.0'
+    workRuntimeKtxVersion = '2.8.1'
     junitExtVersion = "1.1.5"
-    espressoCoreVersion = "3.5.1"
 }
