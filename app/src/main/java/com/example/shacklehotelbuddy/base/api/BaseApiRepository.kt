@@ -3,10 +3,8 @@ package com.example.shacklehotelbuddy.base.api
 import com.example.shacklehotelbuddy.base.api.models.RequestResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
 import retrofit2.HttpException
 import retrofit2.Response
-import java.io.IOException
 
 const val UNKNOWN_ERROR_CODE = 601
 
@@ -28,7 +26,7 @@ abstract class BaseApiRepository {
     protected suspend inline fun <reified T, reified R> executeRequestAndGetResult(
         crossinline requestAction: suspend () -> Response<T>,
         crossinline mappingAction: (data: T?) -> R
-    ): RequestResult<R> = try {
+    ): RequestResult = try {
         withContext(Dispatchers.IO) {
             val response = requestAction.invoke()
             if (response.isSuccessful) {

@@ -69,12 +69,12 @@ abstract class MviViewModel<I : IMviIntent, S : IMviState, A : IMviAction>(
      * @param successAction Success action
      * @param failAction Fail action
      */
-    protected suspend fun <T, R> RequestResult<T>.processRequestResult(
-        successAction: (suspend (data: T) -> R),
-        failAction: (suspend (code: Int, message: String) -> Unit)
+    protected inline fun <reified T> RequestResult.processRequestResult(
+        successAction: ((data: T) -> Unit),
+        failAction: ((code: Int, message: String) -> Unit)
     ) {
         when (this) {
-            is RequestResult.Success -> successAction.invoke(data!!)
+            is RequestResult.Success<*> -> successAction.invoke(data!! as T)
             is RequestResult.Failed -> failAction(code, errorMessage)
         }
     }

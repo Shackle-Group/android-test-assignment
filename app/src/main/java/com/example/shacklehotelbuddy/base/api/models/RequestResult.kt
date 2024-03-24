@@ -7,7 +7,7 @@ package com.example.shacklehotelbuddy.base.api.models
  * @param T Type of response data
  * @constructor Create empty constructor for resource
  */
-sealed class RequestResult<T> {
+sealed interface RequestResult {
     /**
      * We'll wrap our data in this 'Success' class in case of success response from api.
      *
@@ -15,7 +15,7 @@ sealed class RequestResult<T> {
      * @property data Response
      * @constructor Create [Success]
      */
-    class Success<T>(val data: T?) : RequestResult<T>()
+    data class Success<T>(val data: T?) : RequestResult
 
     /**
      * We'll pass error message wrapped in this 'Error' class to the UI in case of failure response.
@@ -25,5 +25,5 @@ sealed class RequestResult<T> {
      * @property errorMessage Text of error
      * @constructor Create [Failed]
      */
-    class Failed<T>(val code: Int, val errorMessage: String) : RequestResult<T>()
+    data class Failed(val code: Int, val errorMessage: String) : RequestResult
 }
