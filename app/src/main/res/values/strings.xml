@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">ShackleHotelBuddy</string>
+
+    <string name="search_title">Select guests, date and time</string>
+    <string name="search_check_in">Check-in date</string>
+    <string name="search_check_out">Check-out date</string>
+    <string name="search_adult_counter">Adults</string>
+    <string name="search_child_counter">Children</string>
+    <string name="search_recent_searches">Recent searches</string>
+    <string name="search_recent_item_content">%1$d adult, %2$d children</string>
+    <string name="search_search">Search</string>
+    <string name="search_dialog_select">Select</string>
+    <string name="search_dialog_cancel">Cancel</string>
+    <string name="search_dialog_title">Change count:</string>
+
+    <string name="hotels_title">Search results</string>
+    <string name="hotels_empty_list">No one hotel by your cafeterias</string>
+    <string name="hotels_night">%1$s night</string>
 </resources>
