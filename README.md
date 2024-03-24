@@ -18,7 +18,7 @@ Test task for Shackle. 2 Screens.
 + Clear and careful coding (median size of fragments, useCases and viewModels is 125 lines)
 
 ## Demonstrating some features
-[![https://github.com/georrge1994/android-test-assignment/blob/main/preview.png]](https://www.youtube.com/shorts/v46y5MDrP5I)
+[![https://raw.githubusercontent.com/georrge1994/android-test-assignment/main/preview.png]](https://www.youtube.com/shorts/v46y5MDrP5I)
 
 ## 🔗 Contacts
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/georgiy-chebotarev/)
