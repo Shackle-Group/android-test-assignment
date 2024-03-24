@@ -1,25 +1,21 @@
 # About project
-Test task for Shackle.
+Test task for Shackle. 2 Screens.
 
 ## Architecture and main technologies
 + Kotlin
 + Coroutines
-+ Clear architecture (MVI with flows)
-+ Single activity app
-+ Unit tests for every each useCase, viewModel, repository, api
-+ kDoc for everything (used an own plugin for Android studio <a href="https://plugins.jetbrains.com/plugin/17719-advance-kotlin-documentation-generator">
-		<b>Advance Kotlin Documentation Generator</b>
-	</a>)
-+ Clear and careful coding (median size of fragments, useCases and viewModels is 125 lines)
-
-## Used the follow frameworks
 + Hilt
 + Jetpack Compose + Navigation
 + Room
 + Retrofit
-+ Mockito
-+ Shimmer animation
-
++ Clear architecture (MVI with flows)
++ Single activity app
++ Mockito (by 1 tests for UseCase, ViewModel, DatabaseRep and ApiReps like the examples)
++ Shimmer animation for second screen
++ kDoc for everything (used an own plugin for Android studio <a href="https://plugins.jetbrains.com/plugin/17719-advance-kotlin-documentation-generator">
+		<b>Advance Kotlin Documentation Generator</b>
+	</a>)
++ Clear and careful coding (median size of fragments, useCases and viewModels is 125 lines)
 
 ## Demonstrating some features
 [![https://github.com/georrge1994/android-test-assignment/blob/main/preview.png]](https://www.youtube.com/shorts/v46y5MDrP5I)
